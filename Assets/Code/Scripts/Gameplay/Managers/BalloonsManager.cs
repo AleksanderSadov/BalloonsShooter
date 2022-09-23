@@ -1,6 +1,5 @@
 using BalloonsShooter.Gameplay.Archetypes;
 using BalloonsShooter.Gameplay.Helpers;
-using BalloonsShooter.Gameplay.Interfaces;
 using BalloonsShooter.Gameplay.Models;
 using BalloonsShooter.Gameplay.Systems;
 using System.Collections.Generic;
@@ -11,40 +10,40 @@ namespace BalloonsShooter.Gameplay.Manager
     public class BalloonsManager : MonoBehaviour
     {
         public Transform balloonPlaneSpawner;
-        public GameObject balloonPrefab;
+        public Balloon balloonPrefab;
 
         private readonly MoveSystem moveSystem = new();
         private readonly BalloonsModel balloonsModel = new();
-        private IRandomSpawnPosition spawnerPositionHelper;
+        private BalloonsSpawner balloonsSpawner;
 
         private void Awake()
         {
-            spawnerPositionHelper = new PlaneSpawnerPositionVector(balloonPlaneSpawner);
+            balloonsSpawner = new(
+                balloonPrefab,
+                balloonPlaneSpawner,
+                defaultCapacity: 10,
+                maxCapacity: 100
+            );
         }
 
         private void Update()
         {
-            //MoveBalloons();
-            SpawnBalloons();
+            //MoveActiveBalloons();
+            SpawnRequiredBalloons();
         }
 
-        private void MoveBalloons()
+        private void MoveActiveBalloons()
         {
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
             moveSystem.Move(activeBalloons, Vector3.up, 1 * Time.deltaTime);
         }
 
-        private void SpawnBalloons()
+        private void SpawnRequiredBalloons()
         {
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
             if (activeBalloons.Count < 3)
             {
-                Vector3 spawnPosition = spawnerPositionHelper.GetRandomSpawnPosition();
-                GameObject balloon = Instantiate(
-                    balloonPrefab,
-                    spawnPosition,
-                    balloonPrefab.transform.rotation
-                );
+                Balloon balloon = balloonsSpawner.Spawn();
             }
         }
     }

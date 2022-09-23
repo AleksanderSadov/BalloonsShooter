@@ -38,6 +38,11 @@ namespace BalloonsShooter.Gameplay.Helpers
 
             return balloon;
         }
+
+        public void Kill(Balloon balloon)
+        {
+            balloonsObjectPool.pool.Release(balloon);
+        }
     }
 }
 

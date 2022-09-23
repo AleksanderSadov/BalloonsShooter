@@ -1,5 +1,7 @@
 using BalloonsShooter.Gameplay.Archetypes;
+using BalloonsShooter.Gameplay.Events;
 using BalloonsShooter.Gameplay.Helpers;
+using BalloonsShooter.Gameplay.Managers;
 using BalloonsShooter.Gameplay.Models;
 using BalloonsShooter.Gameplay.Systems;
 using System.Collections.Generic;
@@ -26,16 +28,26 @@ namespace BalloonsShooter.Gameplay.Manager
             );
         }
 
+        private void OnEnable()
+        {
+            EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
+        }
+
         private void Update()
         {
-            //MoveActiveBalloons();
             SpawnRequiredBalloons();
+            MoveActiveBalloons();
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
         }
 
         private void MoveActiveBalloons()
         {
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            moveSystem.Move(activeBalloons, Vector3.up, 1 * Time.deltaTime);
+            moveSystem.Move(activeBalloons, Vector3.up, 5 * Time.deltaTime);
         }
 
         private void SpawnRequiredBalloons()
@@ -45,6 +57,11 @@ namespace BalloonsShooter.Gameplay.Manager
             {
                 Balloon balloon = balloonsSpawner.Spawn();
             }
+        }
+
+        private void OnBalloonDeathZoneCollision(DeathCollisionEvent<Balloon> evt)
+        {
+            balloonsSpawner.Kill(evt.entity);
         }
     }
 }

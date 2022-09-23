@@ -8,8 +8,9 @@ namespace BalloonsShooter.Gameplay.Archetypes
     {
         private DirectedMovement movement;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             movement = GetComponent<DirectedMovement>();
         }
 

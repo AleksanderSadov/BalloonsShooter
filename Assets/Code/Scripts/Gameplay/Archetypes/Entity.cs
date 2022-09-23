@@ -35,6 +35,11 @@ namespace BalloonsShooter.Gameplay.Archetypes
             CheckCollisionWithDeathZone(other);
         }
 
+        private void OnMouseDown()
+        {
+            EventsManager.Broadcast(new EntityClickedEvent<T>(entityComponent));    
+        }
+
         private void CheckCollisionWithDeathZone(Collider collider)
         {
             if (collider.CompareTag(GameConstants.TAGS_DEATH_ZONE))

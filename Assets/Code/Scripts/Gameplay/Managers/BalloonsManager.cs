@@ -32,6 +32,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private void OnEnable()
         {
             EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
+            EventsManager.AddListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
         }
 
         private void Update()
@@ -43,6 +44,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private void OnDisable()
         {
             EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
+            EventsManager.RemoveListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
         }
 
         private void MoveActiveBalloons()
@@ -61,6 +63,11 @@ namespace BalloonsShooter.Gameplay.Manager
         }
 
         private void OnBalloonDeathZoneCollision(DeathCollisionEvent<Balloon> evt)
+        {
+            balloonsSpawner.Kill(evt.entity);
+        }
+
+        private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
         {
             balloonsSpawner.Kill(evt.entity);
         }

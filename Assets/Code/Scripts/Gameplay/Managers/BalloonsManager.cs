@@ -54,7 +54,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private void SpawnRequiredBalloons()
         {
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            if (activeBalloons.Count < 3)
+            while (activeBalloons.Count < 3)
             {
                 Balloon balloon = balloonsSpawner.Spawn();
             }

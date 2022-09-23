@@ -1,10 +1,10 @@
 namespace BalloonsShooter.Gameplay.Events
 {
-    public class ComponentEnabledEvent<T> : GameEvent
+    public class EntityDisabledEvent<T> : GameEvent
     {
         public T entity;
 
-        public ComponentEnabledEvent(T entity)
+        public EntityDisabledEvent(T entity)
         {
             this.entity = entity;
         }

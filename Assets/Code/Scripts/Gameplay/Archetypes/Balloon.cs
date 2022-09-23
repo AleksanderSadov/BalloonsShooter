@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.Archetypes
 {
-    public class Balloon : Actor<Balloon>, IMove
+    public class Balloon : Entity<Balloon>, IMove
     {
-        private DirectedMovement movement;
+        private DirectedMovement directedMovement;
 
         protected override void Awake()
         {
             base.Awake();
-            movement = GetComponent<DirectedMovement>();
+            directedMovement = GetComponent<DirectedMovement>();
         }
 
-        public void Move(Vector3 direction, float speed) => movement.Move(direction, speed);
+        public void Move(Vector3 direction, float speed) => directedMovement.Move(direction, speed);
     }
 }
 

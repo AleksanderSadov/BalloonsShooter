@@ -5,43 +5,43 @@ using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.Models
 {
-    public class ComponentModel<T> where T : MonoBehaviour
+    public class Model<T> where T : MonoBehaviour
     {
         public List<T> AllEntitiesCached { get; private set; } = new();
         public List<T> EnabledEntitiesCached { get; private set; } = new();
 
-        public ComponentModel()
+        public Model()
         {
-            EventsManager.AddListener<ComponentCreatedEvent<T>>(OnComponentCreated);
-            EventsManager.AddListener<ComponentEnabledEvent<T>>(OnComponentEnabled);
-            EventsManager.AddListener<ComponentDisabledEvent<T>>(OnComponentDisabled);
-            EventsManager.AddListener<ComponentDestroyedEvent<T>>(OnComponentDestroyed);
+            EventsManager.AddListener<EntityCreatedEvent<T>>(OnEntityCreated);
+            EventsManager.AddListener<EntityEnabledEvent<T>>(OnEntityEnabled);
+            EventsManager.AddListener<EntityDisabledEvent<T>>(OnEntityDisabled);
+            EventsManager.AddListener<EntityDestroyedEvent<T>>(OnEntityDestroyed);
         }
 
-        ~ComponentModel()
+        ~Model()
         {
-            EventsManager.RemoveListener<ComponentCreatedEvent<T>>(OnComponentCreated);
-            EventsManager.RemoveListener<ComponentEnabledEvent<T>>(OnComponentEnabled);
-            EventsManager.RemoveListener<ComponentDisabledEvent<T>>(OnComponentDisabled);
-            EventsManager.RemoveListener<ComponentDestroyedEvent<T>>(OnComponentDestroyed);
+            EventsManager.RemoveListener<EntityCreatedEvent<T>>(OnEntityCreated);
+            EventsManager.RemoveListener<EntityEnabledEvent<T>>(OnEntityEnabled);
+            EventsManager.RemoveListener<EntityDisabledEvent<T>>(OnEntityDisabled);
+            EventsManager.RemoveListener<EntityDestroyedEvent<T>>(OnEntityDestroyed);
         }
 
-        private void OnComponentCreated(ComponentCreatedEvent<T> evt)
+        private void OnEntityCreated(EntityCreatedEvent<T> evt)
         {
             AllEntitiesCached.Add(evt.entity);
         }
 
-        private void OnComponentEnabled(ComponentEnabledEvent<T> evt)
+        private void OnEntityEnabled(EntityEnabledEvent<T> evt)
         {
             EnabledEntitiesCached.Add(evt.entity);
         }
 
-        private void OnComponentDisabled(ComponentDisabledEvent<T> evt)
+        private void OnEntityDisabled(EntityDisabledEvent<T> evt)
         {
             EnabledEntitiesCached.Remove(evt.entity);
         }
 
-        private void OnComponentDestroyed(ComponentDestroyedEvent<T> evt)
+        private void OnEntityDestroyed(EntityDestroyedEvent<T> evt)
         {
             AllEntitiesCached.Remove(evt.entity);
             EnabledEntitiesCached.Remove(evt.entity);

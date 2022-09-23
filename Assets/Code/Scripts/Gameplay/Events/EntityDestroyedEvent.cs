@@ -1,10 +1,10 @@
 namespace BalloonsShooter.Gameplay.Events
 {
-    public class ComponentDestroyedEvent<T> : GameEvent
+    public class EntityDestroyedEvent<T> : GameEvent
     {
         public T entity;
 
-        public ComponentDestroyedEvent(T entity)
+        public EntityDestroyedEvent(T entity)
         {
             this.entity = entity;
         }

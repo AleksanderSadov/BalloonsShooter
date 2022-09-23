@@ -5,29 +5,29 @@ using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.Archetypes
 {
-    public abstract class Actor<T> : MonoBehaviour where T : MonoBehaviour 
+    public abstract class Entity<T> : MonoBehaviour where T : MonoBehaviour 
     {
-        private T actorComponent;
+        private T entityComponent;
 
         protected virtual void Awake()
         {
-            actorComponent = GetComponent<T>();
-            EventsManager.Broadcast(new ComponentCreatedEvent<T>(actorComponent));
+            entityComponent = GetComponent<T>();
+            EventsManager.Broadcast(new EntityCreatedEvent<T>(entityComponent));
         }
 
         protected virtual void OnEnable()
         {
-            EventsManager.Broadcast(new ComponentEnabledEvent<T>(actorComponent));
+            EventsManager.Broadcast(new EntityEnabledEvent<T>(entityComponent));
         }
 
         protected virtual void OnDisable()
         {
-            EventsManager.Broadcast(new ComponentDisabledEvent<T>(actorComponent));
+            EventsManager.Broadcast(new EntityDisabledEvent<T>(entityComponent));
         }
 
         protected virtual void OnDestroy()
         {
-            EventsManager.Broadcast(new ComponentDestroyedEvent<T>(actorComponent));
+            EventsManager.Broadcast(new EntityDestroyedEvent<T>(entityComponent));
         }
 
         protected virtual void OnTriggerEnter(Collider other)
@@ -39,7 +39,7 @@ namespace BalloonsShooter.Gameplay.Archetypes
         {
             if (collider.CompareTag(GameConstants.TAGS_DEATH_ZONE))
             {
-                EventsManager.Broadcast(new DeathCollisionEvent<T>(actorComponent));
+                EventsManager.Broadcast(new DeathCollisionEvent<T>(entityComponent));
             }
         }
     }

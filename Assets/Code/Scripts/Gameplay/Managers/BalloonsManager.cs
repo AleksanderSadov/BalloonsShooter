@@ -1,6 +1,7 @@
 using BalloonsShooter.Gameplay.Archetypes;
 using BalloonsShooter.Gameplay.Events;
 using BalloonsShooter.Gameplay.Helpers;
+using BalloonsShooter.Gameplay.Interfaces;
 using BalloonsShooter.Gameplay.Managers;
 using BalloonsShooter.Gameplay.Models;
 using BalloonsShooter.Gameplay.Systems;
@@ -16,11 +17,11 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private readonly MoveSystem moveSystem = new();
         private readonly BalloonsModel balloonsModel = new();
-        private BalloonsSpawner balloonsSpawner;
+        private ISpawner<Balloon> balloonsSpawner;
 
         private void Awake()
         {
-            balloonsSpawner = new(
+            balloonsSpawner = new PlaneSpawnerHelper<Balloon>(
                 balloonPrefab,
                 balloonPlaneSpawner,
                 defaultCapacity: 10,

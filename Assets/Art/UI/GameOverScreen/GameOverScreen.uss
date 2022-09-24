@@ -1,0 +1,42 @@
+.pageTitle {
+    justify-content: flex-start;
+    font-size: 48px;
+    -unity-text-align: upper-center;
+}
+
+.pageSubtitle {
+    -unity-text-align: upper-center;
+    font-size: 42px;
+    width: 100%;
+}
+
+.leaderboardItem {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    max-width: 600px;
+    font-size: 32px;
+}
+
+.leaderboardNickname {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.button {
+    font-size: 24px;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.button:hover {
+    scale: 1.05 1.05;
+}
+
+.button:active {
+    scale: 1 1;
+}

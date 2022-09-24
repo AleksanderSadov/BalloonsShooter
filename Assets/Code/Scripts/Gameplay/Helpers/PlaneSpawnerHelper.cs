@@ -35,6 +35,11 @@ namespace BalloonsShooter.Gameplay.Helpers
         {
             spawnerHelper.Kill(entity);
         }
+
+        public void FreeSpawner()
+        {
+            spawnerHelper.FreeSpawner();
+        }
     }
 }
 

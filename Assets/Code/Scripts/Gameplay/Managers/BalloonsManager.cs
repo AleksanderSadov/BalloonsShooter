@@ -18,6 +18,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private readonly MoveSystem moveSystem = new();
         private readonly BalloonsModel balloonsModel = new();
         private ISpawner<Balloon> balloonsSpawner;
+        private bool shouldSpawn = true;
 
         private void Awake()
         {
@@ -33,6 +34,7 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
             EventsManager.AddListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
+            EventsManager.AddListener<PlayerDeathEvent>(OnPLayerDeathEvent);
         }
 
         private void Update()
@@ -55,6 +57,8 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void SpawnRequiredBalloons()
         {
+            if (!shouldSpawn) return;
+
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
             while (activeBalloons.Count < 3)
             {
@@ -70,6 +74,14 @@ namespace BalloonsShooter.Gameplay.Manager
         private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
         {
             balloonsSpawner.Kill(evt.entity);
+        }
+
+        private void OnPLayerDeathEvent(PlayerDeathEvent evt)
+        {
+            shouldSpawn = false;
+            List<Balloon> allBalloons = balloonsModel.AllEntitiesCached;
+            foreach (Balloon balloon in allBalloons) Destroy(balloon.gameObject);
+            balloonsSpawner.FreeSpawner();
         }
     }
 }

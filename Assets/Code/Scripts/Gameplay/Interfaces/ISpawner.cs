@@ -6,6 +6,7 @@ namespace BalloonsShooter.Gameplay.Interfaces
     {
         public T Spawn();
         public void Kill(T entity);
+        public void FreeSpawner();
     }
 }
 

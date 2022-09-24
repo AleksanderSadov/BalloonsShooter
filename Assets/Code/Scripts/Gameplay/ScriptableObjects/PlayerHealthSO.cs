@@ -54,7 +54,22 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void OnBalloonDeathCollision(DeathCollisionEvent<Balloon> evt)
 		{
-			runtimeHealth += balloonFloatedAwayDecrementHealth;
+			int previousHealth = runtimeHealth;
+			UpdateHealth(balloonFloatedAwayDecrementHealth);
+			CheckHealthAndFirePlayerDeath(previousHealth);
 		}
+
+		private void UpdateHealth(int valueChange)
+        {
+			runtimeHealth += valueChange;
+		}
+
+		private void CheckHealthAndFirePlayerDeath(int previousHealth)
+        {
+			if (previousHealth > 0 && runtimeHealth <= 0)
+            {
+				EventsManager.Broadcast(new PlayerDeathEvent());
+			}
+        }
 	}
 }

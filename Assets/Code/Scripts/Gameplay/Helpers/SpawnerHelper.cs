@@ -36,6 +36,11 @@ namespace BalloonsShooter.Gameplay.Helpers
         {
             objectPool.pool.Release(entity);
         }
+
+        public void FreeSpawner()
+        {
+            objectPool.pool.Dispose();
+        }
     }
 }
 

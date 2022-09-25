@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Art/UI/Elements/leaderboardItem.uss?fileID=7433441132597879392&amp;guid=8fbc2be1526fb3e46901fba542f4451f&amp;type=3#leaderboardItem" />
+    <ui:VisualElement name="LeaderboardItem" class="leaderboardItem">
+        <ui:Label text="#1." display-tooltip-when-elided="true" name="LeaderboardPosition" />
+        <ui:Label text="John Doe" display-tooltip-when-elided="true" name="LeaderboardNickname" class="leaderboardNickname" style="flex-shrink: 1; white-space: nowrap;" />
+        <ui:Label text="3600" display-tooltip-when-elided="true" name="LeaderboardScore" />
+    </ui:VisualElement>
+</ui:UXML>

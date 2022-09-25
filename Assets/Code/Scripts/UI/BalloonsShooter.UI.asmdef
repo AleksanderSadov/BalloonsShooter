@@ -1,8 +1,8 @@
 {
-    "name": "BalloonsShooter.Gameplay",
+    "name": "BalloonsShooter.UI",
     "rootNamespace": "",
     "references": [
-        "GUID:cc14fb8228f55b64289458d2f171b95c"
+        "GUID:f4771471e4cb32140b483d7d2691287f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

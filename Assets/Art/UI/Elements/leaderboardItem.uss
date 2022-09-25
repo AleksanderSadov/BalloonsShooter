@@ -1,0 +1,14 @@
+.leaderboardItem {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    max-width: 600px;
+    font-size: 32px;
+}
+
+.leaderboardNickname {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+}

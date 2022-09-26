@@ -36,9 +36,11 @@ namespace BalloonsShooter.UI
         {
             submitLeaderboardsHint.style.display = DisplayStyle.None;
             leaderboardsLoadingHint.style.display = DisplayStyle.Flex;
+            leaderboardsListView.style.display = DisplayStyle.None;
             leaderboardsService.GetLeaderboardsList((list) =>
             {
                 leaderboardsLoadingHint.style.display = DisplayStyle.None;
+                leaderboardsListView.style.display = DisplayStyle.Flex;
                 leaderboardsListData = list;
                 DisplayLeaderboardsList();
             });

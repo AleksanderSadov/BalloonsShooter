@@ -2,7 +2,7 @@
     flex-direction: row;
     justify-content: space-between;
     flex-grow: 1;
-    max-width: 600px;
+    max-width: none;
     font-size: 32px;
 }
 

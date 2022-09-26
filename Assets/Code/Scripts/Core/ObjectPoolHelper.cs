@@ -47,7 +47,7 @@ namespace BalloonsShooter.Core
 
         private void OnDestroyPoolObject(T entity)
         {
-            Object.Destroy(entity.gameObject);
+            if (entity != null) Object.Destroy(entity.gameObject);
         }
     }
 }

@@ -31,6 +31,10 @@ namespace BalloonsShooter.UI
             submitLeaderboardsHint = document.rootVisualElement.Q<Label>(UIConstants.LEADERBOARDS_LIST_VIEW_SUBMIT_HINT_NAME);
             leaderboardsLoadingHint = document.rootVisualElement.Q<Label>(UIConstants.LEADERBOARDS_LIST_VIEW_LOADING_HINT_NAME);
             leaderboardsListView = document.rootVisualElement.Q<ListView>(UIConstants.LEADERBOARDS_LIST_VIEW_NAME);
+        }
+
+        private void Start()
+        {
             leaderboardsService = ServiceLocator<LeaderboardsServiceSO>.GetService();
             leaderboardsService.Init();
         }

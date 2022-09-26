@@ -36,6 +36,10 @@ namespace BalloonsShooter.UI
         private void Awake()
         {
             submitScoreButton = document.rootVisualElement.Q<Button>(UIConstants.SUBMIT_SCORE_BUTTON_NAME);
+        }
+
+        private void Start()
+        {
             leaderboardsService = ServiceLocator<LeaderboardsServiceSO>.GetService();
             leaderboardsService.Init();
         }

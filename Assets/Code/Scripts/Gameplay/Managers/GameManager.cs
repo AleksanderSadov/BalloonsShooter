@@ -7,8 +7,6 @@ namespace BalloonsShooter.Gameplay.Manager
 {
     public class GameManager : MonoBehaviour
     {
-        public string gameOverSceneName;
-
         private void Awake()
         {
             EventsManager.Broadcast(new GameStartedEvent());
@@ -31,7 +29,7 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void OnPlayerDeath(PlayerDeathEvent evt)
         {
-            SceneManager.LoadScene(gameOverSceneName, LoadSceneMode.Single);
+            SceneManager.LoadScene(CoreConstants.GAME_OVER_SCENE_NAME, LoadSceneMode.Single);
         }
     }
 }

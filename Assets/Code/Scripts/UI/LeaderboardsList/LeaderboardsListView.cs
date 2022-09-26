@@ -1,5 +1,6 @@
 using BalloonsShooter.Core;
 using BalloonsShooter.Core.ScriptableObjects;
+using BalloonsShooter.Gameplay.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,6 +11,10 @@ namespace BalloonsShooter.UI
     {
         [SerializeField]
         private UIDocument document;
+        [SerializeField]
+        private string leaderboardId;
+        [SerializeField]
+        private PlayerNicknameSO currentPlayerNickname;
         [SerializeField]
         private VisualTreeAsset leaderboardsItemTemplate;
         [SerializeField]
@@ -37,7 +42,7 @@ namespace BalloonsShooter.UI
             submitLeaderboardsHint.style.display = DisplayStyle.None;
             leaderboardsLoadingHint.style.display = DisplayStyle.Flex;
             leaderboardsListView.style.display = DisplayStyle.None;
-            leaderboardsService.GetLeaderboardsList((list) =>
+            leaderboardsService.GetLeaderboardsList(currentPlayerNickname.nickname, leaderboardId, (list) =>
             {
                 leaderboardsLoadingHint.style.display = DisplayStyle.None;
                 leaderboardsListView.style.display = DisplayStyle.Flex;

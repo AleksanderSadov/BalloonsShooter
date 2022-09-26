@@ -11,6 +11,6 @@ namespace BalloonsShooter.Core.ScriptableObjects
 
         public abstract void Init();
         public abstract void SubmitScore(string nickname, int userScore, string leaderboardId, System.Action<bool> callback);
-        public abstract void GetLeaderboardsList(System.Action<List<LeaderboardsItemData>> callback);
+        public abstract void GetLeaderboardsList(string currentPlayerNickname, string leaderboardId, System.Action<List<LeaderboardsItemData>> callback);
     }
 }

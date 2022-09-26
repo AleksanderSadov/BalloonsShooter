@@ -134,7 +134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: leaderboardsService
       value: 
-      objectReference: {fileID: 11400000, guid: 07ad1f8476348b1498f22bc77c6ccbbb,
+      objectReference: {fileID: 11400000, guid: 63b165003510f044bbf29b192c6f78a8,
         type: 2}
     - target: {fileID: 1061276644822695716, guid: a589272c57b62b0489627af9c7230754,
         type: 3}

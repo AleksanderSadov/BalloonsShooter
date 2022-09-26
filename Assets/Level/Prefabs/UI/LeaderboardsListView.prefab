@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 0}
+  leaderboardId: BalloonsShooterLeaderboards
+  currentPlayerNickname: {fileID: 11400000, guid: 8053ed6a0031c6449aeeb4a63b4b7fb4,
+    type: 2}
   leaderboardsItemTemplate: {fileID: 9197481963319205126, guid: 1a5945999dc2769488eab200e891f619,
     type: 3}
   positionPrefix: '#'

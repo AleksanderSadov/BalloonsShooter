@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace BalloonsShooter.Core.ScriptableObjects
             MonoInstance.Instance.StartCoroutine(SimulateSubmitScore(simulateCallWaitSeconds, callback));
         }
 
-        public override void GetLeaderboardsList(System.Action<List<LeaderboardsItemData>> callback)
+        public override void GetLeaderboardsList(string currentPlayerNickname, string leaderboardId, Action<List<LeaderboardsItemData>> callback)
         {
             MonoInstance.Instance.StartCoroutine(SimulateGetLeaderboardsList(simulateCallWaitSeconds, callback));
         }

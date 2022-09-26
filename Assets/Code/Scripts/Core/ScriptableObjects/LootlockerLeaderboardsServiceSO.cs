@@ -8,11 +8,19 @@ namespace BalloonsShooter.Core.ScriptableObjects
 	[CreateAssetMenu(fileName = "LootlockerLeaderboardsService", menuName = "ScriptableObjects/LootlockerLeaderboardsService")]
 	public class LootlockerLeaderboardsServiceSO : LeaderboardsServiceSO
     {
+        [SerializeField]
+        private int leaderboardsListLimit;
+
         private bool isSessionCallInProgress = false;
 
         private void OnDisable()
         {
             IsSessionStarted = false;
+        }
+
+        private void OnValidate()
+        {
+            leaderboardsListLimit = Mathf.Clamp(leaderboardsListLimit, 0, int.MaxValue);
         }
 
         public override void Init()
@@ -33,9 +41,9 @@ namespace BalloonsShooter.Core.ScriptableObjects
             });
         }
 
-        public override void GetLeaderboardsList(Action<List<LeaderboardsItemData>> callback)
+        public override void GetLeaderboardsList(string currentPlayerNickname, string leaderboardId, Action<List<LeaderboardsItemData>> callback)
         {
-            throw new NotImplementedException();
+            GetSurroundingScore(currentPlayerNickname, leaderboardId, callback);
         }
 
         private void StartGuestSession()
@@ -49,6 +57,44 @@ namespace BalloonsShooter.Core.ScriptableObjects
                 }
 
                 isSessionCallInProgress = false;
+            });
+        }
+
+        private void GetSurroundingScore(string nickname, string leaderboardId, Action<List<LeaderboardsItemData>> callback)
+        {
+            var leaderboardsList = new List<LeaderboardsItemData>();
+
+            LootLockerSDKManager.GetMemberRank(leaderboardId, nickname, (responseMemberRank) =>
+            {
+                if (responseMemberRank.success)
+                {
+                    int memberRank = responseMemberRank.rank;
+                    int totalCount = leaderboardsListLimit;
+                    int after = Mathf.Clamp((int) Math.Floor(memberRank - leaderboardsListLimit / 2f), 0, int.MaxValue);
+
+                    LootLockerSDKManager.GetScoreList(leaderboardId, totalCount, after, (responseScoreList) =>
+                    {
+                        if (responseScoreList.success)
+                        {
+                            foreach (var responseItem in responseScoreList.items)
+                            {
+                                LeaderboardsItemData listItem = new()
+                                {
+                                    position = responseItem.rank,
+                                    nickname = responseItem.member_id,
+                                    score = responseItem.score
+                                };
+                                leaderboardsList.Add(listItem);
+                            }
+                        }
+
+                        callback(leaderboardsList);
+                    });
+                }
+                else
+                {
+                    callback(leaderboardsList);
+                }
             });
         }
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.ScriptableObjects
 {
-	[CreateAssetMenu(fileName = "NullLeaderboardsService", menuName = "ScriptableObjects/NullLeaderboardsService")]
-	public class NullLeaderboardsServiceSO : LeaderboardsServiceSO
+	[CreateAssetMenu(fileName = "DummyLeaderboardsServiceSO", menuName = "ScriptableObjects/DummyLeaderboardsServiceSO")]
+	public class DummyLeaderboardsServiceSO : LeaderboardsServiceSO
     {
         public float simulateCallWaitSeconds = 1;
 

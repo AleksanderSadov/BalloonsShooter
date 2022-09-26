@@ -1,4 +1,4 @@
-namespace BalloonsShooter.Gameplay.Helpers
+namespace BalloonsShooter.Core
 {
     public static class ServiceLocator<T>
     {

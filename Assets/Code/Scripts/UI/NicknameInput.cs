@@ -9,15 +9,13 @@ namespace BalloonsShooter.UI
         [SerializeField]
         private UIDocument document;
         [SerializeField]
-        private string nicknameInputName;
-        [SerializeField]
         private PlayerNicknameSO playerNicknameSO;
 
         private TextField nicknameInput;
 
         private void Awake()
         {
-            nicknameInput = document.rootVisualElement.Q<TextField>(nicknameInputName);
+            nicknameInput = document.rootVisualElement.Q<TextField>(UIConstants.NICKNAME_INPUT_NAME);
             if (!string.IsNullOrEmpty(playerNicknameSO.nickname)) nicknameInput.value = playerNicknameSO.nickname;
         }
 

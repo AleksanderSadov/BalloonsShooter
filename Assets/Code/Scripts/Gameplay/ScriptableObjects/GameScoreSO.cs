@@ -1,6 +1,6 @@
+using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.Archetypes;
 using BalloonsShooter.Gameplay.Events;
-using BalloonsShooter.Gameplay.Managers;
 using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.ScriptableObjects

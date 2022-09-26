@@ -1,7 +1,7 @@
-using BalloonsShooter.Gameplay.ScriptableObjects;
+using BalloonsShooter.Core.ScriptableObjects;
 using UnityEngine;
 
-namespace BalloonsShooter.Gameplay.Helpers
+namespace BalloonsShooter.Core
 {
     public class ServiceProvider : MonoBehaviour
     {

@@ -130,6 +130,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061276644822695715, guid: a589272c57b62b0489627af9c7230754,
+        type: 3}
+      propertyPath: leaderboardsService
+      value: 
+      objectReference: {fileID: 11400000, guid: 07ad1f8476348b1498f22bc77c6ccbbb,
+        type: 2}
     - target: {fileID: 1061276644822695716, guid: a589272c57b62b0489627af9c7230754,
         type: 3}
       propertyPath: m_RootOrder

@@ -1,5 +1,7 @@
+using BalloonsShooter.Core;
+
 namespace BalloonsShooter.Gameplay.Events
 {
-    public class PlayerDeathEvent : GameEvent { }
+    public class PlayerDeathEvent : ApplicationEvent { }
 }
 

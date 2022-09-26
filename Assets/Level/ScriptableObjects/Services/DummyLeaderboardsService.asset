@@ -13,3 +13,16 @@ MonoBehaviour:
   m_Name: DummyLeaderboardsService
   m_EditorClassIdentifier: 
   simulateCallWaitSeconds: 1
+  leaderboardsList:
+  - position: 1
+    nickname: Test1
+    score: 20000
+  - position: 2
+    nickname: Test2
+    score: 19000
+  - position: 3
+    nickname: Test3
+    score: 18000
+  - position: 4
+    nickname: Test4
+    score: 17000

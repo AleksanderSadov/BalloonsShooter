@@ -1,24 +1,23 @@
-using BalloonsShooter.Gameplay.Events;
 using System;
 using System.Collections.Generic;
 
-namespace BalloonsShooter.Gameplay.Managers
+namespace BalloonsShooter.Core
 {
     public static class EventsManager
     {
-        static readonly Dictionary<Type, Action<GameEvent>> events = new Dictionary<Type, Action<GameEvent>>();
+        static readonly Dictionary<Type, Action<ApplicationEvent>> events = new Dictionary<Type, Action<ApplicationEvent>>();
 
-        static readonly Dictionary<Delegate, Action<GameEvent>> eventLookups =
-            new Dictionary<Delegate, Action<GameEvent>>();
+        static readonly Dictionary<Delegate, Action<ApplicationEvent>> eventLookups =
+            new Dictionary<Delegate, Action<ApplicationEvent>>();
 
-        public static void AddListener<T>(Action<T> evt) where T : GameEvent
+        public static void AddListener<T>(Action<T> evt) where T : ApplicationEvent
         {
             if (!eventLookups.ContainsKey(evt))
             {
-                Action<GameEvent> newAction = (e) => evt((T)e);
+                Action<ApplicationEvent> newAction = (e) => evt((T)e);
                 eventLookups[evt] = newAction;
 
-                if (events.TryGetValue(typeof(T), out Action<GameEvent> internalAction))
+                if (events.TryGetValue(typeof(T), out Action<ApplicationEvent> internalAction))
                 {
                     events[typeof(T)] = internalAction += newAction;
                 }
@@ -29,7 +28,7 @@ namespace BalloonsShooter.Gameplay.Managers
             }
         }
 
-        public static void RemoveListener<T>(Action<T> evt) where T : GameEvent
+        public static void RemoveListener<T>(Action<T> evt) where T : ApplicationEvent
         {
             if (eventLookups.TryGetValue(evt, out var action))
             {
@@ -50,7 +49,7 @@ namespace BalloonsShooter.Gameplay.Managers
             }
         }
 
-        public static void Broadcast(GameEvent evt)
+        public static void Broadcast(ApplicationEvent evt)
         {
             if (events.TryGetValue(evt.GetType(), out var action))
             {

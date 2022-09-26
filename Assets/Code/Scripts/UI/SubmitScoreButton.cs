@@ -1,6 +1,8 @@
-using BalloonsShooter.Gameplay.Helpers;
+using BalloonsShooter.Core;
+using BalloonsShooter.Core.ScriptableObjects;
 using BalloonsShooter.Gameplay.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace BalloonsShooter.UI
@@ -10,13 +12,13 @@ namespace BalloonsShooter.UI
         [SerializeField]
         private UIDocument document;
         [SerializeField]
-        private string submitScoreButtonName;
-        [SerializeField]
         private string leaderboardId;
         [SerializeField]
         private PlayerNicknameSO playerNickname;
         [SerializeField]
         private GameScoreSO gameScore;
+        [SerializeField]
+        private UnityEvent OnSubmit;
 
         private Button submitScoreButton;
         private LeaderboardsServiceSO leaderboardsService;
@@ -33,7 +35,7 @@ namespace BalloonsShooter.UI
 
         private void Awake()
         {
-            submitScoreButton = document.rootVisualElement.Q<Button>(submitScoreButtonName);
+            submitScoreButton = document.rootVisualElement.Q<Button>(UIConstants.SUBMIT_SCORE_BUTTON_NAME);
             leaderboardsService = ServiceLocator<LeaderboardsServiceSO>.GetService();
             leaderboardsService.Init();
         }
@@ -55,7 +57,10 @@ namespace BalloonsShooter.UI
 
         private void OnSubmitButtonPressed(ClickEvent evt)
         {
-            leaderboardsService.SubmitScore(playerNickname.nickname, gameScore.GetCurrentScore(), leaderboardId, (success) => { });
+            leaderboardsService.SubmitScore(playerNickname.nickname, gameScore.GetCurrentScore(), leaderboardId, (success) => 
+            {
+                OnSubmit?.Invoke();
+            });
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BalloonsShooter.Gameplay.Helpers
+namespace BalloonsShooter.Core
 {
     public class MonoInstance : MonoBehaviour
     {

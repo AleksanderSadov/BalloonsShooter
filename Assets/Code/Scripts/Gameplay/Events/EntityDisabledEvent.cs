@@ -1,6 +1,8 @@
+using BalloonsShooter.Core;
+
 namespace BalloonsShooter.Gameplay.Events
 {
-    public class EntityDisabledEvent<T> : GameEvent
+    public class EntityDisabledEvent<T> : ApplicationEvent
     {
         public T entity;
 

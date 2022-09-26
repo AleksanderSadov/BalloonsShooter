@@ -1,6 +1,8 @@
+using BalloonsShooter.Core;
+
 namespace BalloonsShooter.Gameplay.Events
 {
-    public class DeathCollisionEvent<T> : GameEvent
+    public class DeathCollisionEvent<T> : ApplicationEvent
     {
         public T entity;
 

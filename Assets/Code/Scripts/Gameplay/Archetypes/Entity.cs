@@ -1,6 +1,6 @@
+using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.Events;
 using BalloonsShooter.Gameplay.Helpers;
-using BalloonsShooter.Gameplay.Managers;
 using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.Archetypes

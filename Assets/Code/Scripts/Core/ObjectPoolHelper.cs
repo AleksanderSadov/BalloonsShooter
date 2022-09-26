@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-namespace BalloonsShooter.Gameplay.Helpers
+namespace BalloonsShooter.Core
 {
     public class ObjectPoolHelper<T> where T : MonoBehaviour
     {

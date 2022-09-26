@@ -1,11 +1,15 @@
 using LootLocker.Requests;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace BalloonsShooter.Gameplay.ScriptableObjects
+namespace BalloonsShooter.Core.ScriptableObjects
 {
 	[CreateAssetMenu(fileName = "LootlockerLeaderboardsService", menuName = "ScriptableObjects/LootlockerLeaderboardsService")]
 	public class LootlockerLeaderboardsServiceSO : LeaderboardsServiceSO
     {
+        private bool isSessionCallInProgress = false;
+
         private void OnDisable()
         {
             IsSessionStarted = false;
@@ -13,7 +17,7 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
         public override void Init()
         {
-            if (!IsSessionStarted)
+            if (!IsSessionStarted && !isSessionCallInProgress)
             {
                 StartGuestSession();
             }
@@ -29,14 +33,22 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
             });
         }
 
+        public override void GetLeaderboardsList(Action<List<LeaderboardsItemData>> callback)
+        {
+            throw new NotImplementedException();
+        }
+
         private void StartGuestSession()
         {
+            isSessionCallInProgress = true;
             LootLockerSDKManager.StartGuestSession((response) =>
             {
                 if (response.success)
                 {
                     IsSessionStarted = true;
                 }
+
+                isSessionCallInProgress = false;
             });
         }
     }

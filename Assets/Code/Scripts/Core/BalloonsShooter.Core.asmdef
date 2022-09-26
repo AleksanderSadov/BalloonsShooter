@@ -1,8 +1,8 @@
 {
-    "name": "BalloonsShooter.Gameplay",
+    "name": "BalloonsShooter.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:44528f775930bf5488b288cd315a3c17"
+        "GUID:cc14fb8228f55b64289458d2f171b95c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

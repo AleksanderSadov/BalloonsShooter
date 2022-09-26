@@ -4,6 +4,10 @@
         <ui:VisualElement style="flex-direction: column; width: 100%; flex-grow: 0;">
             <ui:Label text="Game Over" display-tooltip-when-elided="true" name="GameOverTitle" class="pageTitle" />
         </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; width: 100%; flex-grow: 0; justify-content: center;">
+            <ui:Label text="Your current score:" display-tooltip-when-elided="true" name="current-score-label" style="font-size: 20px;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="current-score-value" style="font-size: 20px;" />
+        </ui:VisualElement>
         <ui:VisualElement style="justify-content: center; flex-direction: column; align-items: center; flex-wrap: nowrap; width: 100%; flex-grow: 1; margin-top: 48px; margin-bottom: 48px;">
             <ui:VisualElement style="width: 100%;">
                 <ui:Label text="Leaderboards" display-tooltip-when-elided="true" class="pageSubtitle" />

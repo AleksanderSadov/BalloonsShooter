@@ -1,5 +1,6 @@
 public static class UIConstants
 {
+    public static readonly string CURRENT_SCORE_VALUE_NAME = "current-score-value";
     public static readonly string NICKNAME_INPUT_NAME = "nickname-input";
     public static readonly string SUBMIT_SCORE_BUTTON_NAME = "submit-score-button";
     public static readonly string LEADERBOARDS_LIST_VIEW_NAME = "leaderboards-list-view";

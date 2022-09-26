@@ -13,6 +13,8 @@ namespace BalloonsShooter.UI
         private string submitScoreButtonName;
         [SerializeField]
         private string leaderboardId;
+        [SerializeField]
+        private GameScoreSO gameScore;
 
         private Button submitScoreButton;
         private LeaderboardsServiceSO leaderboardsService;
@@ -45,7 +47,7 @@ namespace BalloonsShooter.UI
 
         private void OnSubmitButtonPressed(ClickEvent evt)
         {
-            leaderboardsService.SubmitScore("test", 1020, leaderboardId, (success) => { });
+            leaderboardsService.SubmitScore("test", gameScore.GetCurrentScore(), leaderboardId, (success) => { });
         }
     }
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a1be09c36e07d44b31d074b8b7d248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIDocument: {fileID: 0}
+  document: {fileID: 0}
   submitScoreButtonName: submitScoreButton
   leaderboardId: BalloonsShooterLeaderboards
+  gameScore: {fileID: 11400000, guid: 8f36ff7b6c0d0ed478f49d7ec68582ec, type: 2}

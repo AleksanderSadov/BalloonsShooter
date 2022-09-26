@@ -35,7 +35,7 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 			EventsManager.RemoveListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
 		}
 
-        public float GetCurrentScore()
+        public int GetCurrentScore()
         {
 			return runtimeScore;
         }

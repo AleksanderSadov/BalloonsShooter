@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1d0ac17d3c3714c8ba17d560125da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardsService: {fileID: 11400000, guid: 07ad1f8476348b1498f22bc77c6ccbbb,
+  leaderboardsService: {fileID: 11400000, guid: 63b165003510f044bbf29b192c6f78a8,
     type: 2}

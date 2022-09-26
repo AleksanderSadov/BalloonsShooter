@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4488726677291528444
+--- !u!1 &118228726798373906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4488726677291528435}
-  - component: {fileID: 4488726677291528434}
+  - component: {fileID: 3080292430613839035}
+  - component: {fileID: 7118268533841351435}
   m_Layer: 5
-  m_Name: SubmitScoreButton
+  m_Name: NicknameInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4488726677291528435
+--- !u!4 &3080292430613839035
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488726677291528444}
+  m_GameObject: {fileID: 118228726798373906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,20 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4488726677291528434
+--- !u!114 &7118268533841351435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488726677291528444}
+  m_GameObject: {fileID: 118228726798373906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a1be09c36e07d44b31d074b8b7d248, type: 3}
+  m_Script: {fileID: 11500000, guid: bf42dba103e40d84488f1370d7e8e1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 0}
-  submitScoreButtonName: submitScoreButton
-  leaderboardId: BalloonsShooterLeaderboards
-  playerNickname: {fileID: 11400000, guid: 8053ed6a0031c6449aeeb4a63b4b7fb4, type: 2}
-  gameScore: {fileID: 11400000, guid: 8f36ff7b6c0d0ed478f49d7ec68582ec, type: 2}
+  nicknameInputName: nicknameInput
+  playerNicknameSO: {fileID: 11400000, guid: 8053ed6a0031c6449aeeb4a63b4b7fb4, type: 2}

@@ -17,7 +17,7 @@
                 </ui:ScrollView>
             </ui:VisualElement>
             <ui:VisualElement style="width: 75%; max-width: 400px;">
-                <ui:TextField picking-mode="Ignore" text="Enter your nickname" style="flex-basis: 45%;" />
+                <ui:TextField picking-mode="Ignore" text="Enter your nickname" name="nicknameInput" style="flex-basis: 45%;" />
                 <ui:Button text="Submit Score" display-tooltip-when-elided="true" name="submitScoreButton" class="button" />
             </ui:VisualElement>
         </ui:VisualElement>

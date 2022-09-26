@@ -14,13 +14,21 @@ namespace BalloonsShooter.UI
         [SerializeField]
         private string leaderboardId;
         [SerializeField]
+        private PlayerNicknameSO playerNickname;
+        [SerializeField]
         private GameScoreSO gameScore;
 
         private Button submitScoreButton;
         private LeaderboardsServiceSO leaderboardsService;
         private bool ShouldEnableButton 
         {
-            get => enabled && leaderboardsService.IsSessionStarted && !leaderboardsService.IsSubmitInProgress;
+            get
+            {
+                return enabled
+                    && leaderboardsService.IsSessionStarted
+                    && !leaderboardsService.IsSubmitInProgress
+                    && !string.IsNullOrEmpty(playerNickname.nickname);
+            }
         }
 
         private void Awake()
@@ -47,7 +55,7 @@ namespace BalloonsShooter.UI
 
         private void OnSubmitButtonPressed(ClickEvent evt)
         {
-            leaderboardsService.SubmitScore("test", gameScore.GetCurrentScore(), leaderboardId, (success) => { });
+            leaderboardsService.SubmitScore(playerNickname.nickname, gameScore.GetCurrentScore(), leaderboardId, (success) => { });
         }
     }
 }

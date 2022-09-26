@@ -19,8 +19,6 @@ namespace BalloonsShooter.UI
         private VisualTreeAsset leaderboardsItemTemplate;
         [SerializeField]
         private string positionPrefix;
-        [SerializeField]
-        private int listItemHeight = 45;
 
         private Label submitLeaderboardsHint;
         private Label leaderboardsLoadingHint;
@@ -48,6 +46,7 @@ namespace BalloonsShooter.UI
                 leaderboardsListView.style.display = DisplayStyle.Flex;
                 leaderboardsListData = list;
                 DisplayLeaderboardsList();
+                StartCoroutine(ScrollToCurrentPlayer(waitSeconds: 0.1f));
             });
         }
 
@@ -67,9 +66,15 @@ namespace BalloonsShooter.UI
                 (item.userData as LeaderboardsItemController).SetItemData(leaderboardsListData[index]);
             };
 
-            leaderboardsListView.fixedItemHeight = listItemHeight;
-
             leaderboardsListView.itemsSource = leaderboardsListData;
+        }
+
+        private IEnumerator<WaitForSeconds> ScrollToCurrentPlayer(float waitSeconds)
+        {
+            // TODO Find list view ready callback. Now just wait and assume list view is ready
+            yield return new WaitForSeconds(waitSeconds);
+            var playerIndex = leaderboardsListData.FindIndex(item => item.nickname.Equals(currentPlayerNickname.nickname));
+            leaderboardsListView.ScrollToItem(playerIndex);
         }
     }
 }

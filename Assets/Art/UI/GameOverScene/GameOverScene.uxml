@@ -11,7 +11,7 @@
             <ui:VisualElement style="width: 75%; justify-content: center; flex-direction: column; flex-wrap: wrap; flex-grow: 1;">
                 <ui:Label text="Please submit your score to view leaderboards" display-tooltip-when-elided="true" name="leaderboards-submit-score-hint" class="submitLeaderboardsHint" style="width: 100%;" />
                 <ui:Label text="Loading..." display-tooltip-when-elided="true" name="leaderboards-loading-hint" class="submitLeaderboardsHint" style="display: none; width: 100%;" />
-                <ui:ListView focusable="false" name="leaderboards-list-view" style="display: none; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 48px; margin-bottom: 48px;" />
+                <ui:ListView focusable="false" name="leaderboards-list-view" fixed-item-height="45" selection-type="None" style="display: none; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 48px; margin-bottom: 48px;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 75%; max-width: 400px;">
                 <ui:TextField picking-mode="Ignore" text="Enter your nickname" name="nickname-input" style="flex-basis: 45%;" />

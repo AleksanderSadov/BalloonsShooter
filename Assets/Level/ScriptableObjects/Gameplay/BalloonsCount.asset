@@ -15,4 +15,3 @@ MonoBehaviour:
   maxBalloonsCount: 10
   initialBalloonsCount: 1
   increaseBalloonsCountPerSecond: 0.2
-  runtimeRequiredBalloonsCount: 1

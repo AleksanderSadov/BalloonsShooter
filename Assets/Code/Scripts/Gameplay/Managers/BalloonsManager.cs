@@ -20,6 +20,8 @@ namespace BalloonsShooter.Gameplay.Manager
         private bool shouldSpawn = true;
         private BalloonsCountSO balloonsCount;
         private BalloonsSpawnChancesSO balloonsSpawnChances;
+        private float balloonsLeftMargin;
+        private float balloonsRightMargin;
 
         private void Awake()
         {
@@ -29,6 +31,10 @@ namespace BalloonsShooter.Gameplay.Manager
                 defaultCapacity: 10,
                 maxCapacity: 100
             );
+
+            float spawnerHalfWidth = balloonPlaneSpawner.localScale.x * GameConstants.PLANE_DEFAULT_SIZE.x / 2;
+            balloonsLeftMargin = balloonPlaneSpawner.position.x - spawnerHalfWidth;
+            balloonsRightMargin = balloonPlaneSpawner.position.x + spawnerHalfWidth;
         }
 
         private void OnEnable()
@@ -61,8 +67,24 @@ namespace BalloonsShooter.Gameplay.Manager
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
             foreach (Balloon balloon in activeBalloons)
             {
-                balloon.Move(Vector3.up, balloon.type.FloatSpeed * Time.deltaTime);
+                balloon.transform.Translate(balloon.type.FloatSpeed * Time.deltaTime * Vector3.up);
+
+                if (balloon.transform.position.x < balloonsLeftMargin)
+                {
+                    RestrictBalloonMovement(balloon, balloonsLeftMargin);
+                }
+                else if (balloon.transform.position.x > balloonsRightMargin)
+                {
+                    RestrictBalloonMovement(balloon, balloonsRightMargin);
+                }
             }
+        }
+
+        private void RestrictBalloonMovement(Balloon balloon, float positionX)
+        {
+            Vector3 originalPosition = balloon.transform.position;
+            Vector3 restrictedPosition = new Vector3(positionX, originalPosition.y, originalPosition.z);
+            balloon.transform.position = restrictedPosition;
         }
 
         private void SpawnRequiredBalloons()
@@ -76,6 +98,7 @@ namespace BalloonsShooter.Gameplay.Manager
                 Balloon balloon = balloonsSpawner.Spawn();
                 balloon.type = balloonsSpawnChances.GetRandomBalloonType();
                 balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;
+                balloon.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
 

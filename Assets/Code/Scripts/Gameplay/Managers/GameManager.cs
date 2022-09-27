@@ -1,6 +1,5 @@
 using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.Events;
-using BalloonsShooter.Gameplay.Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +7,7 @@ namespace BalloonsShooter.Gameplay.Manager
 {
     public class GameManager : MonoBehaviour
     {
-        private void Awake()
+        private void Start()
         {
             EventsManager.Broadcast(new GameStartedEvent());
         }

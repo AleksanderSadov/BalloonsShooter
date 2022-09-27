@@ -8,10 +8,10 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 	[CreateAssetMenu(fileName = "PlayerHealth", menuName = "ScriptableObjects/PlayerHealth", order = 2)]
 	public class PlayerHealthSO : ScriptableObject
 	{
-        [SerializeField]
-		private int initialHealth = 3;
 		[SerializeField]
 		private int maxHealth = 5;
+		[SerializeField]
+		private int initialHealth = 3;
 		[SerializeField]
 		private int balloonFloatedAwayDecrementHealth = -1;
 
@@ -45,8 +45,8 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void OnValidate()
 		{
-			initialHealth = Mathf.Clamp(initialHealth, 1, int.MaxValue);
-			maxHealth = Mathf.Clamp(maxHealth, initialHealth, int.MaxValue);
+			maxHealth = Mathf.Clamp(maxHealth, 1, int.MaxValue);
+			initialHealth = Mathf.Clamp(initialHealth, 1, maxHealth);
 			runtimeHealth = Mathf.Clamp(runtimeHealth, 0, maxHealth);
 			balloonFloatedAwayDecrementHealth = Mathf.Clamp(balloonFloatedAwayDecrementHealth, int.MinValue, 0);
 		}

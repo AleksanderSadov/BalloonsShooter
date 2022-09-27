@@ -1,5 +1,4 @@
 using BalloonsShooter.Core;
-using BalloonsShooter.Gameplay.ScriptableObjects;
 using BalloonsShooter.Leaderboards;
 using System.Collections.Generic;
 using UnityEngine;

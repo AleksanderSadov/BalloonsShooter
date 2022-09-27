@@ -4,6 +4,7 @@ using BalloonsShooter.Gameplay.Events;
 using BalloonsShooter.Gameplay.Helpers;
 using BalloonsShooter.Gameplay.Interfaces;
 using BalloonsShooter.Gameplay.Models;
+using BalloonsShooter.Gameplay.ScriptableObjects;
 using BalloonsShooter.Gameplay.Systems;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private readonly BalloonsModel balloonsModel = new();
         private ISpawner<Balloon> balloonsSpawner;
         private bool shouldSpawn = true;
+        private BalloonsCountSO balloonsCount;
 
         private void Awake()
         {
@@ -35,6 +37,11 @@ namespace BalloonsShooter.Gameplay.Manager
             EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
             EventsManager.AddListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
             EventsManager.AddListener<PlayerDeathEvent>(OnPLayerDeathEvent);
+        }
+
+        private void Start()
+        {
+            balloonsCount = ServiceLocator<BalloonsCountSO>.GetService();
         }
 
         private void Update()
@@ -60,7 +67,7 @@ namespace BalloonsShooter.Gameplay.Manager
             if (!shouldSpawn) return;
 
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            while (activeBalloons.Count < 3)
+            while (activeBalloons.Count < balloonsCount.GetCurrentRequiredBalloonsCount())
             {
                 Balloon balloon = balloonsSpawner.Spawn();
             }

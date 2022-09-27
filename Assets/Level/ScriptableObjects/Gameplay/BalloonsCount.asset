@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabb8c1fb3ad2b64cb6f204767602f78, type: 3}
-  m_Name: PlayerHealth
+  m_Script: {fileID: 11500000, guid: 9d595319ac20e3b47848cdc245345eb5, type: 3}
+  m_Name: BalloonsCount
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  initialHealth: 5
-  balloonFloatedAwayDecrementHealth: -1
-  runtimeHealth: 0
+  MaxBalloonsCount: 1
+  initialBalloonsCount: 1
+  increaseBalloonsCountEverySeconds: 10
+  runtimeRequiredBalloonsCount: 1

@@ -12,6 +12,8 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		private int maxHealth = 5;
 		[SerializeField]
 		private int initialHealth = 3;
+		[SerializeField]
+		private bool isInvincible = false;
 
 		[Space(20)]
 		[SerializeField]
@@ -68,6 +70,8 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void HandleDamage(int damage)
         {
+			if (damage > 0 && isInvincible) return;
+
 			UpdateHealth(damage);
 
 			if (previousHealth > 0 && runtimeHealth <= 0)

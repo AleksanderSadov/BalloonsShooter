@@ -1,4 +1,4 @@
-using BalloonsShooter.Core;
+using BalloonsShooter.Leaderboards;
 using UnityEngine.UIElements;
 
 namespace BalloonsShooter.UI

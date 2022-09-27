@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BalloonsShooter.Gameplay.ScriptableObjects
+namespace BalloonsShooter.UI
 {
 	[CreateAssetMenu(fileName = "PlayerNickname", menuName = "ScriptableObjects/PlayerNickname")]
 	public class PlayerNicknameSO : ScriptableObject

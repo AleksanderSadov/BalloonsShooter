@@ -1,10 +1,9 @@
 {
-    "name": "BalloonsShooter.UI",
+    "name": "BalloonsShooter.Leaderboards",
     "rootNamespace": "",
     "references": [
         "GUID:44528f775930bf5488b288cd315a3c17",
-        "GUID:f4771471e4cb32140b483d7d2691287f",
-        "GUID:4e45412757dbbe943ac644d50c49412a"
+        "GUID:cc14fb8228f55b64289458d2f171b95c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

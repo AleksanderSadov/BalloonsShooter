@@ -1,4 +1,4 @@
-using BalloonsShooter.Core;
+using BalloonsShooter.Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -29,7 +29,7 @@ namespace BalloonsShooter.UI
 
         private void OnRestartButtonPressed(ClickEvent evt)
         {
-            SceneManager.LoadScene(CoreConstants.GAME_SCENE_NAME, LoadSceneMode.Single);
+            SceneManager.LoadScene(GameConstants.GAME_SCENE_NAME, LoadSceneMode.Single);
         }
     }
 }

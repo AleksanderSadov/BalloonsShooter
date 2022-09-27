@@ -1,6 +1,6 @@
 using BalloonsShooter.Core;
-using BalloonsShooter.Core.ScriptableObjects;
 using BalloonsShooter.Gameplay.ScriptableObjects;
+using BalloonsShooter.Leaderboards;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,8 +14,6 @@ namespace BalloonsShooter.UI
         [SerializeField]
         private string leaderboardId;
         [SerializeField]
-        private PlayerNicknameSO currentPlayerNickname;
-        [SerializeField]
         private VisualTreeAsset leaderboardsItemTemplate;
         [SerializeField]
         private string positionPrefix;
@@ -25,6 +23,7 @@ namespace BalloonsShooter.UI
         private ListView leaderboardsListView;
         private List<LeaderboardsItemData> leaderboardsListData;
         private LeaderboardsServiceSO leaderboardsService;
+        private PlayerNicknameSO currentPlayerNickname;
 
         private void Awake()
         {
@@ -35,6 +34,7 @@ namespace BalloonsShooter.UI
 
         private void Start()
         {
+            currentPlayerNickname = ServiceLocator<PlayerNicknameSO>.GetService();
             leaderboardsService = ServiceLocator<LeaderboardsServiceSO>.GetService();
             leaderboardsService.Init();
         }

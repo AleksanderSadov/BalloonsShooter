@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BalloonsShooter.Core.ScriptableObjects
+namespace BalloonsShooter.Leaderboards
 {
 	[CreateAssetMenu(fileName = "LootlockerLeaderboardsService", menuName = "ScriptableObjects/LootlockerLeaderboardsService")]
 	public class LootlockerLeaderboardsServiceSO : LeaderboardsServiceSO

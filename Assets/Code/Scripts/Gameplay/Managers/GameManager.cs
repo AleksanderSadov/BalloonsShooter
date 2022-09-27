@@ -1,5 +1,6 @@
 using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.Events;
+using BalloonsShooter.Gameplay.Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +30,7 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void OnPlayerDeath(PlayerDeathEvent evt)
         {
-            SceneManager.LoadScene(CoreConstants.GAME_OVER_SCENE_NAME, LoadSceneMode.Single);
+            SceneManager.LoadScene(GameConstants.GAME_OVER_SCENE_NAME, LoadSceneMode.Single);
         }
     }
 }

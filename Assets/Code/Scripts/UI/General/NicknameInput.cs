@@ -1,3 +1,4 @@
+using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,14 +9,18 @@ namespace BalloonsShooter.UI
     {
         [SerializeField]
         private UIDocument document;
-        [SerializeField]
-        private PlayerNicknameSO playerNicknameSO;
 
+        private PlayerNicknameSO playerNicknameSO;
         private TextField nicknameInput;
 
         private void Awake()
         {
             nicknameInput = document.rootVisualElement.Q<TextField>(UIConstants.NICKNAME_INPUT_NAME);
+        }
+
+        private void Start()
+        {
+            playerNicknameSO = ServiceLocator<PlayerNicknameSO>.GetService();
             if (!string.IsNullOrEmpty(playerNicknameSO.nickname)) nicknameInput.value = playerNicknameSO.nickname;
         }
 

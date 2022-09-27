@@ -1,6 +1,6 @@
 using BalloonsShooter.Core;
-using BalloonsShooter.Core.ScriptableObjects;
 using BalloonsShooter.Gameplay.ScriptableObjects;
+using BalloonsShooter.Leaderboards;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -14,14 +14,12 @@ namespace BalloonsShooter.UI
         [SerializeField]
         private string leaderboardId;
         [SerializeField]
-        private PlayerNicknameSO playerNickname;
-        [SerializeField]
-        private GameScoreSO gameScore;
-        [SerializeField]
         private UnityEvent OnSubmit;
 
         private Button submitScoreButton;
         private LeaderboardsServiceSO leaderboardsService;
+        private PlayerNicknameSO playerNickname;
+        private GameScoreSO gameScore;
         private bool ShouldEnableButton 
         {
             get
@@ -40,6 +38,8 @@ namespace BalloonsShooter.UI
 
         private void Start()
         {
+            playerNickname = ServiceLocator<PlayerNicknameSO>.GetService();
+            gameScore = ServiceLocator<GameScoreSO>.GetService();
             leaderboardsService = ServiceLocator<LeaderboardsServiceSO>.GetService();
             leaderboardsService.Init();
         }

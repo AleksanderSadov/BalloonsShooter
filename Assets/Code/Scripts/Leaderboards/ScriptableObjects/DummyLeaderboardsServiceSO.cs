@@ -1,9 +1,10 @@
+using BalloonsShooter.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BalloonsShooter.Core.ScriptableObjects
+namespace BalloonsShooter.Leaderboards
 {
 	[CreateAssetMenu(fileName = "DummyLeaderboardsServiceSO", menuName = "ScriptableObjects/DummyLeaderboardsServiceSO")]
 	public class DummyLeaderboardsServiceSO : LeaderboardsServiceSO

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BalloonsShooter.Core.ScriptableObjects
+namespace BalloonsShooter.Leaderboards
 {
 	public abstract class LeaderboardsServiceSO : ScriptableObject
 	{

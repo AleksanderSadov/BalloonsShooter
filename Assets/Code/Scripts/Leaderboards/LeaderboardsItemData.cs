@@ -1,4 +1,4 @@
-namespace BalloonsShooter.Core
+namespace BalloonsShooter.Leaderboards
 {
     [System.Serializable]
     public class LeaderboardsItemData

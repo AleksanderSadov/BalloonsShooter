@@ -14,7 +14,7 @@ namespace BalloonsShooter.UI
 
         private void Awake()
         {
-            restartGameButton = document.rootVisualElement.Q<Button>(UIConstants.RESTART_GAME_BUTTON);
+            restartGameButton = document.rootVisualElement.Q<Button>(UIConstants.RESTART_GAME_BUTTON_NAME);
         }
 
         private void OnEnable()

@@ -9,5 +9,6 @@ public static class UIConstants
     public static readonly string LEADERBOARDS_LIST_ITEM_POSITION_NAME = "leaderboards-item-position";
     public static readonly string LEADERBOARDS_LIST_ITEM_NICKNAME_NAME = "leaderboards-item-nickname";
     public static readonly string LEADERBOARDS_LIST_ITEM_SCORE_NAME = "leaderboards-item-score";
-    public static readonly string RESTART_GAME_BUTTON = "restart-game-button";
+    public static readonly string RESTART_GAME_BUTTON_NAME = "restart-game-button";
+    public static readonly string GAME_HUD_HEALTH_CONTAINER_NAME = "health-container";
 }

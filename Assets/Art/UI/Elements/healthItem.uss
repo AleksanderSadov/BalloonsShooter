@@ -1,0 +1,10 @@
+.health-item {
+    background-image: url('project://database/Assets/Art/Textures/heart.png?fileID=2800000&guid=6079e4787af3ccb4ca9441cb0329703f&type=3#heart');
+    width: 35px;
+    height: 30px;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

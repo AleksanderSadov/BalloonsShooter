@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   initialHealth: 3
+  maxHealth: 5
   balloonFloatedAwayDecrementHealth: -1
   runtimeHealth: 3

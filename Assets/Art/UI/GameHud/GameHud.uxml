@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="healthItem" src="project://database/Assets/Art/UI/Elements/healthItem.uxml?fileID=9197481963319205126&amp;guid=47d7747f8810b2643ad922f24d2ba9c6&amp;type=3#healthItem" />
+    <ui:VisualElement name="hud-container" style="flex-direction: row; height: 100%;">
+        <ui:VisualElement name="health-container" style="flex-direction: column-reverse;">
+            <ui:Instance template="healthItem" name="healthItem" />
+            <ui:Instance template="healthItem" name="healthItem" />
+            <ui:Instance template="healthItem" name="healthItem" />
+            <ui:Instance template="healthItem" name="healthItem" />
+            <ui:Instance template="healthItem" name="healthItem" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

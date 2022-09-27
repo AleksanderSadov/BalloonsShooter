@@ -11,11 +11,15 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         [SerializeField]
 		private int initialHealth = 3;
 		[SerializeField]
+		private int maxHealth = 5;
+		[SerializeField]
 		private int balloonFloatedAwayDecrementHealth = -1;
 
 		[Space(20)]
 		[SerializeField]
 		private int runtimeHealth;
+
+		private int previousHealth;
 
         private void OnEnable()
         {
@@ -29,35 +33,44 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 			EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathCollision);
 		}
 
-        public float GetCurrentHealth()
+        public int GetCurrentHealth()
         {
 			return runtimeHealth;
         }
 
+		public int GetMaxHealth()
+		{
+			return maxHealth;
+		}
+
 		private void OnValidate()
 		{
-			initialHealth = Mathf.Clamp(initialHealth, 0, int.MaxValue);
+			initialHealth = Mathf.Clamp(initialHealth, 1, int.MaxValue);
+			maxHealth = Mathf.Clamp(maxHealth, initialHealth, int.MaxValue);
+			runtimeHealth = Mathf.Clamp(runtimeHealth, 0, maxHealth);
 			balloonFloatedAwayDecrementHealth = Mathf.Clamp(balloonFloatedAwayDecrementHealth, int.MinValue, 0);
 		}
 
 		private void OnGameStarted(GameStartedEvent evt)
 		{
 			runtimeHealth = initialHealth;
+			previousHealth = initialHealth;
 		}
 
 		private void OnBalloonDeathCollision(DeathCollisionEvent<Balloon> evt)
 		{
-			int previousHealth = runtimeHealth;
 			UpdateHealth(balloonFloatedAwayDecrementHealth);
-			CheckHealthAndFirePlayerDeath(previousHealth);
+			CheckHealthAndFirePlayerDeath();
 		}
 
 		private void UpdateHealth(int valueChange)
         {
-			runtimeHealth += valueChange;
+			previousHealth = runtimeHealth;
+			int newHealth = runtimeHealth + valueChange;
+			runtimeHealth = Mathf.Clamp(newHealth, 0, maxHealth);
 		}
 
-		private void CheckHealthAndFirePlayerDeath(int previousHealth)
+		private void CheckHealthAndFirePlayerDeath()
         {
 			if (previousHealth > 0 && runtimeHealth <= 0)
             {

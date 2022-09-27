@@ -13,13 +13,12 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		[SerializeField]
 		private int initialBalloonsCount = 1;
 		[SerializeField]
-		private int increaseBalloonsCountEverySeconds = 10;
+		private float increaseBalloonsCountPerSecond = 0.1f;
 
 		[Space(20)]
 		[SerializeField]
-		private int runtimeRequiredBalloonsCount = 0;
+		private float runtimeRequiredBalloonsCount = 0;
 
-		private float lastTimeDifficultyIncreased;
 		private bool shouldRunDifficultyTimer = false;
 
 		private void OnEnable()
@@ -44,12 +43,11 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		public int GetCurrentRequiredBalloonsCount()
 		{
-			return runtimeRequiredBalloonsCount;
+			return (int) Mathf.Floor(runtimeRequiredBalloonsCount);
 		}
 
 		private void StartIncreaseDifficultyTimer()
 		{
-			lastTimeDifficultyIncreased = Time.time;
 			shouldRunDifficultyTimer = true;
 			MonoInstance.Instance.StartCoroutine(DifficultyTimer());
 		}
@@ -58,13 +56,8 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         {
 			while (shouldRunDifficultyTimer)
             {
-				if (Time.time - lastTimeDifficultyIncreased >= increaseBalloonsCountEverySeconds)
-				{
-					runtimeRequiredBalloonsCount++;
-					lastTimeDifficultyIncreased = Time.time;
-				}
-
-				yield return new WaitForSeconds(0.1f);
+				runtimeRequiredBalloonsCount += increaseBalloonsCountPerSecond * Time.deltaTime;
+				yield return null;
 			}
         }
 

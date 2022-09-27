@@ -9,7 +9,7 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 	public class BalloonsCountSO : ScriptableObject
 	{
 		[SerializeField]
-		private int MaxBalloonsCount = 1;
+		private int maxBalloonsCount = 1;
 		[SerializeField]
 		private int initialBalloonsCount = 1;
 		[SerializeField]
@@ -36,9 +36,9 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void OnValidate()
 		{
-			MaxBalloonsCount = Mathf.Clamp(MaxBalloonsCount, 1, int.MaxValue);
-			initialBalloonsCount = Mathf.Clamp(initialBalloonsCount, 1, MaxBalloonsCount);
-			runtimeRequiredBalloonsCount = Mathf.Clamp(initialBalloonsCount, 0, MaxBalloonsCount);
+			maxBalloonsCount = Mathf.Clamp(maxBalloonsCount, 1, int.MaxValue);
+			initialBalloonsCount = Mathf.Clamp(initialBalloonsCount, 1, maxBalloonsCount);
+			runtimeRequiredBalloonsCount = Mathf.Clamp(initialBalloonsCount, 0, maxBalloonsCount);
 		}
 
 		public int GetCurrentRequiredBalloonsCount()
@@ -56,7 +56,15 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         {
 			while (shouldRunDifficultyTimer)
             {
-				runtimeRequiredBalloonsCount += increaseBalloonsCountPerSecond * Time.deltaTime;
+				var increaseAmount = increaseBalloonsCountPerSecond * Time.deltaTime;
+				var newBalloonsCount = runtimeRequiredBalloonsCount + increaseAmount;
+				runtimeRequiredBalloonsCount = Mathf.Clamp(newBalloonsCount, 1, maxBalloonsCount);
+
+				if (newBalloonsCount >= maxBalloonsCount)
+                {
+					shouldRunDifficultyTimer = false;
+                }
+
 				yield return null;
 			}
         }

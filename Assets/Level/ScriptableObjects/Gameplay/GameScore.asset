@@ -15,4 +15,4 @@ MonoBehaviour:
   initialScore: 0
   balloonFloatedAwayDecrementScore: -100
   balloonClickedIncrementScore: 100
-  runtimeScore: 2001
+  runtimeScore: 0

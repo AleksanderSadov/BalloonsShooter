@@ -20,14 +20,12 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         private void OnEnable()
         {
 			EventsManager.AddListener<GameStartedEvent>(OnGameStarted);
-			EventsManager.AddListener<GameEndedEvent>(OnGameEnded);
 			EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathCollision);
 		}
 
         private void OnDisable()
         {
 			EventsManager.RemoveListener<GameStartedEvent>(OnGameStarted);
-			EventsManager.RemoveListener<GameEndedEvent>(OnGameEnded);
 			EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathCollision);
 		}
 
@@ -43,11 +41,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		}
 
 		private void OnGameStarted(GameStartedEvent evt)
-		{
-			runtimeHealth = initialHealth;
-		}
-
-		private void OnGameEnded(GameEndedEvent evt)
 		{
 			runtimeHealth = initialHealth;
 		}

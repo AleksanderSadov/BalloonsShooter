@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonTypes:
   - type: {fileID: 11400000, guid: c0ebcd6f4679e744d8d213678481997e, type: 2}
-    weightedSpawnChance: 10
+    weightedSpawnChance: 6
   - type: {fileID: 11400000, guid: 05f6cb0aed876dd49995b80bc7bf714b, type: 2}
     weightedSpawnChance: 3
   - type: {fileID: 11400000, guid: 15c9e2e0d2fdbbe42906d1637c45fe77, type: 2}

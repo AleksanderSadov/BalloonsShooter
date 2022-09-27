@@ -16,7 +16,7 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		private float increaseBalloonsCountPerSecond = 0.1f;
 
 		[Space(20)]
-		[SerializeField]
+		[System.NonSerialized]
 		private float runtimeRequiredBalloonsCount = 0;
 
 		private bool shouldRunDifficultyTimer = false;

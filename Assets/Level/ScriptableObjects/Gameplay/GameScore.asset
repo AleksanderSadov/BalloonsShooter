@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: GameScore
   m_EditorClassIdentifier: 
   initialScore: 0
-  balloonFloatedAwayDecrementScore: -100
-  balloonClickedIncrementScore: 100
   runtimeScore: 0

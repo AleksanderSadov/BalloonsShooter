@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamagerBalloon
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: b00e310e086676442a87041d513b463d, type: 2}
-  floatSpeed: 5
+  floatSpeed: 2.5
   damageOnClick: 1
   damageOnFloatAway: 0
   scoreOnClick: -100

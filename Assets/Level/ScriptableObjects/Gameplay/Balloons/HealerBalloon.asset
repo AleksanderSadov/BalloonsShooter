@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealerBalloon
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 15754ad7cc67a6e4e951fbc4642b7628, type: 2}
-  floatSpeed: 5
+  floatSpeed: 2.5
   damageOnClick: -1
   damageOnFloatAway: 0
   scoreOnClick: 100

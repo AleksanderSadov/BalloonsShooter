@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoldenBalloon
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f297ca5c144fda64399661d9a4a219a4, type: 2}
-  floatSpeed: 10
+  floatSpeed: 5
   damageOnClick: 0
   damageOnFloatAway: 0
   scoreOnClick: 500

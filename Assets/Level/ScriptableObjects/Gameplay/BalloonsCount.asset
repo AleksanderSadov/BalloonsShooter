@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d595319ac20e3b47848cdc245345eb5, type: 3}
   m_Name: BalloonsCount
   m_EditorClassIdentifier: 
-  maxBalloonsCount: 10
+  maxBalloonsCount: 20
   initialBalloonsCount: 1
   increaseBalloonsCountPerSecond: 0.2
+  runtimeRequiredBalloonsCount: 1

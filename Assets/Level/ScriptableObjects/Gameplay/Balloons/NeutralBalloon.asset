@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NeutralBalloon
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 411c8031d6fc8f44a832236bd2277f1c, type: 2}
-  floatSpeed: 5
+  floatSpeed: 2.5
   damageOnClick: 0
   damageOnFloatAway: 1
   scoreOnClick: 100

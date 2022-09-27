@@ -16,6 +16,7 @@ namespace BalloonsShooter.Leaderboards
         private void OnDisable()
         {
             IsSessionStarted = false;
+            isSessionCallInProgress = false;
         }
 
         private void OnValidate()

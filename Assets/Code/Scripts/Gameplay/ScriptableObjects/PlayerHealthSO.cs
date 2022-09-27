@@ -12,8 +12,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		private int maxHealth = 5;
 		[SerializeField]
 		private int initialHealth = 3;
-		[SerializeField]
-		private int balloonFloatedAwayDecrementHealth = -1;
 
 		[Space(20)]
 		[SerializeField]
@@ -25,12 +23,14 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         {
 			EventsManager.AddListener<GameStartedEvent>(OnGameStarted);
 			EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathCollision);
+			EventsManager.AddListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
 		}
 
         private void OnDisable()
         {
 			EventsManager.RemoveListener<GameStartedEvent>(OnGameStarted);
 			EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathCollision);
+			EventsManager.RemoveListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
 		}
 
         public int GetCurrentHealth()
@@ -48,7 +48,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 			maxHealth = Mathf.Clamp(maxHealth, 1, int.MaxValue);
 			initialHealth = Mathf.Clamp(initialHealth, 1, maxHealth);
 			runtimeHealth = Mathf.Clamp(runtimeHealth, 0, maxHealth);
-			balloonFloatedAwayDecrementHealth = Mathf.Clamp(balloonFloatedAwayDecrementHealth, int.MinValue, 0);
 		}
 
 		private void OnGameStarted(GameStartedEvent evt)
@@ -59,23 +58,29 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void OnBalloonDeathCollision(DeathCollisionEvent<Balloon> evt)
 		{
-			UpdateHealth(balloonFloatedAwayDecrementHealth);
-			CheckHealthAndFirePlayerDeath();
+			HandleDamage(evt.entity.type.DamageOnFloatAway);
 		}
 
-		private void UpdateHealth(int valueChange)
-        {
-			previousHealth = runtimeHealth;
-			int newHealth = runtimeHealth + valueChange;
-			runtimeHealth = Mathf.Clamp(newHealth, 0, maxHealth);
+		private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
+		{
+			HandleDamage(evt.entity.type.DamageOnClick);
 		}
 
-		private void CheckHealthAndFirePlayerDeath()
+		private void HandleDamage(int damage)
         {
+			UpdateHealth(damage);
+
 			if (previousHealth > 0 && runtimeHealth <= 0)
-            {
+			{
 				EventsManager.Broadcast(new PlayerDeathEvent());
 			}
-        }
+		}
+
+		private void UpdateHealth(int damage)
+        {
+			previousHealth = runtimeHealth;
+			int newHealth = runtimeHealth - damage;
+			runtimeHealth = Mathf.Clamp(newHealth, 0, maxHealth);
+		}
 	}
 }

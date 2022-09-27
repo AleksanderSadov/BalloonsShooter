@@ -5,7 +5,6 @@ using BalloonsShooter.Gameplay.Helpers;
 using BalloonsShooter.Gameplay.Interfaces;
 using BalloonsShooter.Gameplay.Models;
 using BalloonsShooter.Gameplay.ScriptableObjects;
-using BalloonsShooter.Gameplay.Systems;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,11 +15,11 @@ namespace BalloonsShooter.Gameplay.Manager
         public Transform balloonPlaneSpawner;
         public Balloon balloonPrefab;
 
-        private readonly MoveSystem moveSystem = new();
         private readonly BalloonsModel balloonsModel = new();
         private ISpawner<Balloon> balloonsSpawner;
         private bool shouldSpawn = true;
         private BalloonsCountSO balloonsCount;
+        private BalloonsSpawnChancesSO balloonsSpawnChances;
 
         private void Awake()
         {
@@ -42,6 +41,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private void Start()
         {
             balloonsCount = ServiceLocator<BalloonsCountSO>.GetService();
+            balloonsSpawnChances = ServiceLocator<BalloonsSpawnChancesSO>.GetService();
         }
 
         private void Update()
@@ -59,7 +59,10 @@ namespace BalloonsShooter.Gameplay.Manager
         private void MoveActiveBalloons()
         {
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            moveSystem.Move(activeBalloons, Vector3.up, 5 * Time.deltaTime);
+            foreach (Balloon balloon in activeBalloons)
+            {
+                balloon.Move(Vector3.up, balloon.type.FloatSpeed * Time.deltaTime);
+            }
         }
 
         private void SpawnRequiredBalloons()
@@ -67,9 +70,12 @@ namespace BalloonsShooter.Gameplay.Manager
             if (!shouldSpawn) return;
 
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            while (activeBalloons.Count < balloonsCount.GetCurrentRequiredBalloonsCount())
+            int spawnCount = balloonsCount.GetCurrentRequiredBalloonsCount() - activeBalloons.Count;
+            for (int i = 0; i < spawnCount; i++)
             {
                 Balloon balloon = balloonsSpawner.Spawn();
+                balloon.type = balloonsSpawnChances.GetRandomBalloonType();
+                balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;
             }
         }
 

@@ -10,10 +10,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 	{
         [SerializeField]
 		private int initialScore;
-		[SerializeField]
-		private int balloonFloatedAwayDecrementScore = -100;
-		[SerializeField]
-		private int balloonClickedIncrementScore = 100;
 
         [Space(20)]
 		[SerializeField]
@@ -38,12 +34,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 			return runtimeScore;
         }
 
-		private void OnValidate()
-		{
-			balloonFloatedAwayDecrementScore = Mathf.Clamp(balloonFloatedAwayDecrementScore, int.MinValue, 0);
-			balloonClickedIncrementScore = Mathf.Clamp(balloonClickedIncrementScore, 0, int.MaxValue);
-		}
-
 		private void OnGameStarted(GameStartedEvent evt)
         {
 			runtimeScore = initialScore;
@@ -51,12 +41,12 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 
 		private void OnBalloonDeathCollision(DeathCollisionEvent<Balloon> evt)
 		{
-			runtimeScore += balloonFloatedAwayDecrementScore;
+			runtimeScore += evt.entity.type.ScoreOnFloatAway;
 		}
 
 		private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
 		{
-			runtimeScore += balloonClickedIncrementScore;
+			runtimeScore += evt.entity.type.ScoreOnClick;
 		}
 	}
 }

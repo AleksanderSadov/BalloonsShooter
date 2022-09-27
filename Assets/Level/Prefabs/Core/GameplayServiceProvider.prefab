@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonsCount: {fileID: 11400000, guid: 9a7ec925c54a3f1498b1cd573cf6f6c7, type: 2}
+  balloonsSpawnChances: {fileID: 11400000, guid: 030e8635afe9bbf4d8b679164025e0b9,
+    type: 2}
   gameScore: {fileID: 11400000, guid: 8f36ff7b6c0d0ed478f49d7ec68582ec, type: 2}
   playerHealth: {fileID: 11400000, guid: ec8e3ce2014967b4ba254da66786eb2b, type: 2}

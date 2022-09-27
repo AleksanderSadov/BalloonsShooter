@@ -1,11 +1,14 @@
 using BalloonsShooter.Gameplay.Components;
 using BalloonsShooter.Gameplay.Interfaces;
+using BalloonsShooter.Gameplay.ScriptableObjects;
 using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.Archetypes
 {
     public class Balloon : Entity<Balloon>, IMove
     {
+        public BalloonTypeSO type;
+
         private DirectedMovement directedMovement;
 
         protected override void Awake()

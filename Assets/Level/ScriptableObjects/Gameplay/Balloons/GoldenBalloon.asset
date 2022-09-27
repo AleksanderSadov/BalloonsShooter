@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d595319ac20e3b47848cdc245345eb5, type: 3}
-  m_Name: BalloonsCount
+  m_Script: {fileID: 11500000, guid: 8f0ada350d8bb6749bc8cc45ced4b8f5, type: 3}
+  m_Name: GoldenBalloon
   m_EditorClassIdentifier: 
-  MaxBalloonsCount: 1
-  initialBalloonsCount: 1
-  increaseBalloonsCountPerSecond: 0.2
-  runtimeRequiredBalloonsCount: 2.8162615
+  material: {fileID: 2100000, guid: f297ca5c144fda64399661d9a4a219a4, type: 2}
+  floatSpeed: 10
+  damageOnClick: 0
+  damageOnFloatAway: 0
+  scoreOnClick: 500
+  scoreOnFloatAway: -500

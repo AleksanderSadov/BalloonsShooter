@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b88a3c913bddc45a2ac487119f9207, type: 3}
+  m_Name: BalloonsSpawnChances
+  m_EditorClassIdentifier: 
+  balloonTypes:
+  - type: {fileID: 11400000, guid: c0ebcd6f4679e744d8d213678481997e, type: 2}
+    weightedSpawnChance: 10
+  - type: {fileID: 11400000, guid: 05f6cb0aed876dd49995b80bc7bf714b, type: 2}
+    weightedSpawnChance: 3
+  - type: {fileID: 11400000, guid: 15c9e2e0d2fdbbe42906d1637c45fe77, type: 2}
+    weightedSpawnChance: 3
+  - type: {fileID: 11400000, guid: 8ed805846be42be4d9d59a3fc5883899, type: 2}
+    weightedSpawnChance: 1

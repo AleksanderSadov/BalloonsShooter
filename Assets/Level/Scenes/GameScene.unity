@@ -464,6 +464,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2316566337880203558, guid: 702e9123f1f4c8649bdf51d421d4bc90,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316566337880203558, guid: 702e9123f1f4c8649bdf51d421d4bc90,
+        type: 3}
       propertyPath: balloonPlaneSpawner
       value: 
       objectReference: {fileID: 940747847}

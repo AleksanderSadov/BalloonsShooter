@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 namespace BalloonsShooter.Core
 {
-    public class ObjectPoolHelper<T> where T : MonoBehaviour
+    public class ObjectPoolHelper<T> where T : Component
     {
         public readonly ObjectPool<T> pool;
 

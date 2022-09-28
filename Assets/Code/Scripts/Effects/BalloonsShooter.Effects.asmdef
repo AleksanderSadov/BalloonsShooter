@@ -1,0 +1,17 @@
+{
+    "name": "BalloonsShooter.Effects",
+    "rootNamespace": "",
+    "references": [
+        "GUID:44528f775930bf5488b288cd315a3c17",
+        "GUID:f4771471e4cb32140b483d7d2691287f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

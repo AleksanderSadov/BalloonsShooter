@@ -37,6 +37,7 @@ namespace BalloonsShooter.Gameplay.Archetypes
 
         private void OnMouseDown()
         {
+            Debug.Log("entityComponent: " + entityComponent);
             EventsManager.Broadcast(new EntityClickedEvent<T>(entityComponent));    
         }
 

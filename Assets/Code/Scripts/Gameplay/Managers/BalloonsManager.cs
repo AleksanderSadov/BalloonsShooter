@@ -23,20 +23,6 @@ namespace BalloonsShooter.Gameplay.Manager
         private float balloonsLeftMargin;
         private float balloonsRightMargin;
 
-        private void Awake()
-        {
-            balloonsSpawner = new PlaneSpawnerHelper<Balloon>(
-                balloonPrefab,
-                balloonPlaneSpawner,
-                defaultCapacity: 10,
-                maxCapacity: 100
-            );
-
-            float spawnerHalfWidth = balloonPlaneSpawner.localScale.x * GameConstants.PLANE_DEFAULT_SIZE.x / 2;
-            balloonsLeftMargin = balloonPlaneSpawner.position.x - spawnerHalfWidth;
-            balloonsRightMargin = balloonPlaneSpawner.position.x + spawnerHalfWidth;
-        }
-
         private void OnEnable()
         {
             EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
@@ -48,6 +34,18 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             balloonsCount = ServiceLocator<BalloonsCountSO>.GetService();
             balloonsSpawnChances = ServiceLocator<BalloonsSpawnChancesSO>.GetService();
+
+            int maxBalloonsCount = balloonsCount.GetMaxBalloonsCount();
+            balloonsSpawner = new PlaneSpawnerHelper<Balloon>(
+                balloonPrefab,
+                balloonPlaneSpawner,
+                defaultCapacity: maxBalloonsCount,
+                maxCapacity: maxBalloonsCount
+            );
+
+            float spawnerHalfWidth = balloonPlaneSpawner.localScale.x * GameConstants.PLANE_DEFAULT_SIZE.x / 2;
+            balloonsLeftMargin = balloonPlaneSpawner.position.x - spawnerHalfWidth;
+            balloonsRightMargin = balloonPlaneSpawner.position.x + spawnerHalfWidth;
         }
 
         private void Update()

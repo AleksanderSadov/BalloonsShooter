@@ -46,6 +46,11 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 			return (int) Mathf.Floor(runtimeRequiredBalloonsCount);
 		}
 
+		public int GetMaxBalloonsCount()
+        {
+			return maxBalloonsCount;
+        }
+
 		private void StartIncreaseDifficultyTimer()
 		{
 			shouldRunDifficultyTimer = true;

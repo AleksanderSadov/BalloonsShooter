@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonPlaneSpawner: {fileID: 0}
-  balloonPrefab: {fileID: 4471035910590164570, guid: f41e4468e3e92244cb4b366d2717b218,
+  balloonPrefab: {fileID: -995126475897760239, guid: c7f3b879c3dbe694d959f2b219709893,
     type: 3}

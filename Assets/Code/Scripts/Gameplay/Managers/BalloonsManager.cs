@@ -68,7 +68,7 @@ namespace BalloonsShooter.Gameplay.Manager
             List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
             foreach (Balloon balloon in activeBalloons)
             {
-                balloon.transform.Translate(balloon.type.FloatSpeed * Time.deltaTime * Vector3.up);
+                balloon.transform.Translate(balloon.type.FloatSpeed * Time.deltaTime * Vector3.up, Space.World);
 
                 if (balloon.transform.position.x < balloonsLeftMargin)
                 {

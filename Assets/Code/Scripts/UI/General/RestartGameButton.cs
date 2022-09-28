@@ -1,4 +1,6 @@
+using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay;
+using BalloonsShooter.Gameplay.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -9,6 +11,8 @@ namespace BalloonsShooter.UI
     {
         [SerializeField]
         private UIDocument document;
+        [SerializeField]
+        private LoadSceneMode unloadSceneMode;
 
         private Button restartGameButton;
 
@@ -29,7 +33,18 @@ namespace BalloonsShooter.UI
 
         private void OnRestartButtonPressed(ClickEvent evt)
         {
-            SceneManager.LoadScene(GameConstants.GAME_SCENE_NAME, LoadSceneMode.Single);
+            var gameStartScene = SceneManager.GetSceneByName(GameConstants.GAME_SCENE_NAME);
+            if (gameStartScene.isLoaded)
+            {
+                SceneManager.UnloadSceneAsync(GameConstants.GAME_OVER_ADDITIVE_SCENE_NAME).completed += (operation) =>
+                {
+                    EventsManager.Broadcast(new GameStartedEvent());
+                };
+            }
+            else
+            {
+                Debug.Log("Restart Game Clicked");
+            }
         }
     }
 }

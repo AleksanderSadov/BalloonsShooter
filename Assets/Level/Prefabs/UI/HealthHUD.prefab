@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2371028505635591643}
   - component: {fileID: 2264848394389840615}
   m_Layer: 5
-  m_Name: HealthHud
+  m_Name: HealthHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

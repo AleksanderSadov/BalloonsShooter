@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Art/UI/GameOverScene/GameOverScene.uss?fileID=7433441132597879392&amp;guid=3d27920247b0915458c8d816252e2fb7&amp;type=3#GameOverScene" />
-    <ui:VisualElement style="height: 100%; background-color: rgb(118, 118, 118); padding-left: 24px; padding-right: 24px; padding-top: 24px; padding-bottom: 24px; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;">
+    <ui:VisualElement style="height: 100%; background-color: rgba(0, 0, 0, 0.78); padding-left: 24px; padding-right: 24px; padding-top: 24px; padding-bottom: 24px; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; color: rgba(255, 255, 255, 255);">
         <ui:VisualElement style="flex-direction: column; width: 100%; flex-grow: 0;">
             <ui:Label text="Game Over" display-tooltip-when-elided="true" name="GameOverTitle" class="pageTitle" />
         </ui:VisualElement>

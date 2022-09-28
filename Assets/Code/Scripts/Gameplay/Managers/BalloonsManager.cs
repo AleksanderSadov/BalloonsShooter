@@ -25,9 +25,10 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void OnEnable()
         {
+            EventsManager.AddListener<GameStartedEvent>(OnGameStarted);
+            EventsManager.AddListener<GameEndedEvent>(OnGameEnded);
             EventsManager.AddListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
             EventsManager.AddListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
-            EventsManager.AddListener<PlayerDeathEvent>(OnPLayerDeathEvent);
         }
 
         private void Start()
@@ -40,7 +41,7 @@ namespace BalloonsShooter.Gameplay.Manager
                 balloonPrefab,
                 balloonPlaneSpawner,
                 defaultCapacity: maxBalloonsCount,
-                maxCapacity: maxBalloonsCount
+                maxCapacity: maxBalloonsCount * 2
             );
 
             float spawnerHalfWidth = balloonPlaneSpawner.localScale.x * GameConstants.PLANE_DEFAULT_SIZE.x / 2;
@@ -56,6 +57,8 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void OnDisable()
         {
+            EventsManager.RemoveListener<GameStartedEvent>(OnGameStarted);
+            EventsManager.RemoveListener<GameEndedEvent>(OnGameEnded);
             EventsManager.RemoveListener<DeathCollisionEvent<Balloon>>(OnBalloonDeathZoneCollision);
             EventsManager.RemoveListener<EntityClickedEvent<Balloon>>(OnBalloonClicked);
         }
@@ -100,6 +103,18 @@ namespace BalloonsShooter.Gameplay.Manager
             }
         }
 
+        private void OnGameStarted(GameStartedEvent evt)
+        {
+            shouldSpawn = true;
+        }
+
+        private void OnGameEnded(GameEndedEvent evt)
+        {
+            shouldSpawn = false;
+            List<Balloon> allBalloons = balloonsModel.AllEntitiesCached;
+            foreach (Balloon balloon in allBalloons) balloonsSpawner.Kill(balloon);
+        }
+
         private void OnBalloonDeathZoneCollision(DeathCollisionEvent<Balloon> evt)
         {
             balloonsSpawner.Kill(evt.entity);
@@ -108,14 +123,6 @@ namespace BalloonsShooter.Gameplay.Manager
         private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
         {
             balloonsSpawner.Kill(evt.entity);
-        }
-
-        private void OnPLayerDeathEvent(PlayerDeathEvent evt)
-        {
-            shouldSpawn = false;
-            List<Balloon> allBalloons = balloonsModel.AllEntitiesCached;
-            foreach (Balloon balloon in allBalloons) Destroy(balloon.gameObject);
-            balloonsSpawner.FreeSpawner();
         }
     }
 }

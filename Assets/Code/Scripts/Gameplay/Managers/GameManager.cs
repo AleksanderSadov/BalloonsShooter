@@ -29,7 +29,8 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void OnPlayerDeath(PlayerDeathEvent evt)
         {
-            SceneManager.LoadScene(GameConstants.GAME_OVER_SCENE_NAME, LoadSceneMode.Single);
+            EventsManager.Broadcast(new GameEndedEvent());
+            SceneManager.LoadSceneAsync(GameConstants.GAME_OVER_ADDITIVE_SCENE_NAME, LoadSceneMode.Additive);
         }
     }
 }

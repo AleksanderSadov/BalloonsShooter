@@ -16,7 +16,7 @@ namespace BalloonsShooter.Gameplay.Helpers
         {
             objectPool = new(
                 objectPrefab: objectPrefab,
-                collectionCheck: true,
+                collectionCheck: false,
                 defaultCapacity: defaultCapacity,
                 maxCapacity: maxCapacity
             );

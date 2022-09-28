@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999911a91701f344a83316c6ae44d6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 0}
+  type: {fileID: 11400000, guid: c0ebcd6f4679e744d8d213678481997e, type: 2}
 --- !u!95 &5796826376111455625
 Animator:
   serializedVersion: 4

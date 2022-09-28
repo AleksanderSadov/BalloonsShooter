@@ -14,8 +14,6 @@ namespace BalloonsShooter.Gameplay
         private GameScoreSO gameScore;
         [SerializeField]
         private PlayerHealthSO playerHealth;
-        [SerializeField]
-        private SkyboxSO skybox;
 
         private void Awake()
         {
@@ -23,7 +21,6 @@ namespace BalloonsShooter.Gameplay
             ServiceLocator<BalloonsSpawnChancesSO>.ProvideService(balloonsSpawnChances);
             ServiceLocator<GameScoreSO>.ProvideService(gameScore);
             ServiceLocator<PlayerHealthSO>.ProvideService(playerHealth);
-            ServiceLocator<SkyboxSO>.ProvideService(skybox);
         }
     }
 }

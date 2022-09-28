@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BalloonsShooter.Gameplay.ScriptableObjects
+namespace BalloonsShooter.Effects.ScriptableObjects
 {
 	[CreateAssetMenu(fileName = "Skybox", menuName = "ScriptableObjects/Skybox")]
 	public class SkyboxSO : ScriptableObject

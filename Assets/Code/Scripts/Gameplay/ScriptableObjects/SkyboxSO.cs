@@ -36,7 +36,7 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
         private void OnGameStarted(GameStartedEvent evt)
         {
 			var randomSkybox = GetRandomSkybox();
-			if (randomSkybox != null) RenderSettings.skybox = randomSkybox;
+			if (randomSkybox != null) RenderSettings.skybox = Instantiate(randomSkybox);
 
 			shouldRunSkyboxRotation = true;
 			if (coroutine != null) MonoInstance.Instance.StopCoroutine(coroutine);

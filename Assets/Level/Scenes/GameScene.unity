@@ -477,11 +477,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameHUD
       objectReference: {fileID: 0}
-    - target: {fileID: 1960119677830562041, guid: 5b0e674f5f5ca8c4cb49fa6b36421af5,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthHUD
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b0e674f5f5ca8c4cb49fa6b36421af5, type: 3}
 --- !u!1001 &3292247408222306392

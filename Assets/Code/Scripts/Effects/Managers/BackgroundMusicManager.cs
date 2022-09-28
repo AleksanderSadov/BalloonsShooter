@@ -1,6 +1,7 @@
+using BalloonsShooter.Effects.ScriptableObjects;
 using UnityEngine;
 
-namespace BalloonsShooter.Effects.ScriptableObjects
+namespace BalloonsShooter.Effects.Managers
 {
     [RequireComponent(typeof(AudioSource))]
 	public class BackgroundMusicManager : MonoBehaviour

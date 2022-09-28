@@ -30,8 +30,8 @@ namespace BalloonsShooter.UI
 
         private void Update()
         {
-            CheckMaxHealth(playerHealthSO.GetMaxHealth());
-            DisplayCurrentHealth(playerHealthSO.GetCurrentHealth());
+            CheckMaxHealth(playerHealthSO.MaxHealth);
+            DisplayCurrentHealth(playerHealthSO.RuntimeHealth);
         }
 
         private void DisplayCurrentHealth(int currentHealth)

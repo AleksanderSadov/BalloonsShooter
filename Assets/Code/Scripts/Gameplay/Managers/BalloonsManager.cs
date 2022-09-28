@@ -1,12 +1,12 @@
 using BalloonsShooter.Core;
+using BalloonsShooter.Core.Events;
 using BalloonsShooter.Gameplay.Archetypes;
 using BalloonsShooter.Gameplay.Events;
-using BalloonsShooter.Gameplay.Helpers;
-using BalloonsShooter.Gameplay.Interfaces;
 using BalloonsShooter.Gameplay.Models;
 using BalloonsShooter.Gameplay.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace BalloonsShooter.Gameplay.Manager
 {
@@ -15,13 +15,12 @@ namespace BalloonsShooter.Gameplay.Manager
         public Transform balloonPlaneSpawner;
         public Balloon balloonPrefab;
 
-        private readonly BalloonsModel balloonsModel = new();
-        private ISpawner<Balloon> balloonsSpawner;
+        private BalloonsModel balloonsModel;
+        private ObjectPool<Balloon> balloonsObjectPool;
         private bool shouldSpawn = true;
         private BalloonsCountSO balloonsCount;
         private BalloonsSpawnChancesSO balloonsSpawnChances;
-        private float balloonsLeftMargin;
-        private float balloonsRightMargin;
+        private PlaneHelper spawnPlaneHelper;
 
         private void OnEnable()
         {
@@ -33,20 +32,39 @@ namespace BalloonsShooter.Gameplay.Manager
 
         private void Start()
         {
+            balloonsModel = ServiceLocator<BalloonsModel>.GetService();
             balloonsCount = ServiceLocator<BalloonsCountSO>.GetService();
             balloonsSpawnChances = ServiceLocator<BalloonsSpawnChancesSO>.GetService();
 
-            int maxBalloonsCount = balloonsCount.GetMaxBalloonsCount();
-            balloonsSpawner = new PlaneSpawnerHelper<Balloon>(
-                balloonPrefab,
-                balloonPlaneSpawner,
+            int maxBalloonsCount = balloonsCount.MaxBalloonsCount;
+            balloonsObjectPool = new(
+                createFunc: () =>
+                {
+                    Balloon balloon = Instantiate(balloonPrefab);
+                    return balloon;
+                },
+                actionOnGet: (Balloon balloon) =>
+                {
+                    balloon.transform.position = spawnPlaneHelper.GetRandomPositionOnPlane();
+                    balloon.type = balloonsSpawnChances.GetRandomBalloonType();
+                    balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;
+                    balloon.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    balloon.gameObject.SetActive(true);
+                },
+                actionOnRelease: (Balloon balloon) =>
+                {
+                    balloon.gameObject.SetActive(false);
+                },
+                actionOnDestroy: (Balloon balloon) =>
+                {
+                    if (balloon.gameObject != null) Destroy(balloon.gameObject);
+                },
+                collectionCheck: false,
                 defaultCapacity: maxBalloonsCount,
-                maxCapacity: maxBalloonsCount * 2
+                maxSize: maxBalloonsCount * 2
             );
 
-            float spawnerHalfWidth = balloonPlaneSpawner.localScale.x * GameConstants.PLANE_DEFAULT_SIZE.x / 2;
-            balloonsLeftMargin = balloonPlaneSpawner.position.x - spawnerHalfWidth;
-            balloonsRightMargin = balloonPlaneSpawner.position.x + spawnerHalfWidth;
+            spawnPlaneHelper = new(balloonPlaneSpawner);
         }
 
         private void Update()
@@ -70,13 +88,13 @@ namespace BalloonsShooter.Gameplay.Manager
             {
                 balloon.transform.Translate(balloon.type.FloatSpeed * Time.deltaTime * Vector3.up, Space.World);
 
-                if (balloon.transform.position.x < balloonsLeftMargin)
+                if (balloon.transform.position.x < spawnPlaneHelper.LeftBorderCached)
                 {
-                    RestrictBalloonMovement(balloon, balloonsLeftMargin);
+                    RestrictBalloonMovement(balloon, spawnPlaneHelper.LeftBorderCached);
                 }
-                else if (balloon.transform.position.x > balloonsRightMargin)
+                else if (balloon.transform.position.x > spawnPlaneHelper.RightBorderCached)
                 {
-                    RestrictBalloonMovement(balloon, balloonsRightMargin);
+                    RestrictBalloonMovement(balloon, spawnPlaneHelper.RightBorderCached);
                 }
             }
         }
@@ -84,7 +102,7 @@ namespace BalloonsShooter.Gameplay.Manager
         private void RestrictBalloonMovement(Balloon balloon, float positionX)
         {
             Vector3 originalPosition = balloon.transform.position;
-            Vector3 restrictedPosition = new Vector3(positionX, originalPosition.y, originalPosition.z);
+            Vector3 restrictedPosition = new(positionX, originalPosition.y, originalPosition.z);
             balloon.transform.position = restrictedPosition;
         }
 
@@ -92,14 +110,10 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             if (!shouldSpawn) return;
 
-            List<Balloon> activeBalloons = balloonsModel.EnabledEntitiesCached;
-            int spawnCount = balloonsCount.GetCurrentRequiredBalloonsCount() - activeBalloons.Count;
+            int spawnCount = (int) Mathf.Floor(balloonsCount.RuntimeRequiredBalloonsCount) - balloonsObjectPool.CountActive;
             for (int i = 0; i < spawnCount; i++)
             {
-                Balloon balloon = balloonsSpawner.Spawn();
-                balloon.type = balloonsSpawnChances.GetRandomBalloonType();
-                balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;
-                balloon.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                balloonsObjectPool.Get();
             }
         }
 
@@ -112,17 +126,15 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             shouldSpawn = false;
             List<Balloon> allBalloons = balloonsModel.AllEntitiesCached;
-            foreach (Balloon balloon in allBalloons) balloonsSpawner.Kill(balloon);
+            foreach (Balloon balloon in allBalloons) balloonsObjectPool.Release(balloon);
         }
 
-        private void OnBalloonDeathZoneCollision(DeathCollisionEvent<Balloon> evt)
-        {
-            balloonsSpawner.Kill(evt.entity);
-        }
+        private void OnBalloonDeathZoneCollision(DeathCollisionEvent<Balloon> evt) => ReleaseBalloon(evt.entity);
+        private void OnBalloonClicked(EntityClickedEvent<Balloon> evt) => ReleaseBalloon(evt.entity);
 
-        private void OnBalloonClicked(EntityClickedEvent<Balloon> evt)
+        private void ReleaseBalloon(Balloon balloon)
         {
-            balloonsSpawner.Kill(evt.entity);
+            balloonsObjectPool.Release(balloon);
         }
     }
 }

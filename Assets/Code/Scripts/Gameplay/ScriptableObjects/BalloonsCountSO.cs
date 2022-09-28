@@ -1,6 +1,3 @@
-using BalloonsShooter.Core;
-using BalloonsShooter.Gameplay.Events;
-using System.Collections;
 using UnityEngine;
 
 namespace BalloonsShooter.Gameplay.ScriptableObjects
@@ -19,75 +16,16 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 		[SerializeField]
 		private float runtimeRequiredBalloonsCount = 0;
 
-		private bool shouldRunDifficultyTimer = false;
+        public int MaxBalloonsCount { get => maxBalloonsCount; private set => maxBalloonsCount = value; }
+        public int InitialBalloonsCount { get => initialBalloonsCount; private set => initialBalloonsCount = value; }
+        public float IncreaseBalloonsCountPerSecond { get => increaseBalloonsCountPerSecond; private set => increaseBalloonsCountPerSecond = value; }
+        public float RuntimeRequiredBalloonsCount { get => runtimeRequiredBalloonsCount; set => runtimeRequiredBalloonsCount = value; }
 
-		private void OnEnable()
+        private void OnValidate()
 		{
-			EventsManager.AddListener<GameStartedEvent>(OnGameStarted);
-			EventsManager.AddListener<GameEndedEvent>(OnGameEnded);
-		}
-
-		private void OnDisable()
-		{
-			EventsManager.RemoveListener<GameStartedEvent>(OnGameStarted);
-			EventsManager.RemoveListener<GameEndedEvent>(OnGameEnded);
-			StopDifficultyTimer();
-		}
-
-		private void OnValidate()
-		{
-			maxBalloonsCount = Mathf.Clamp(maxBalloonsCount, 1, int.MaxValue);
-			initialBalloonsCount = Mathf.Clamp(initialBalloonsCount, 1, maxBalloonsCount);
-			runtimeRequiredBalloonsCount = Mathf.Clamp(initialBalloonsCount, 0, maxBalloonsCount);
-		}
-
-		public int GetCurrentRequiredBalloonsCount()
-		{
-			return (int) Mathf.Floor(runtimeRequiredBalloonsCount);
-		}
-
-		public int GetMaxBalloonsCount()
-        {
-			return maxBalloonsCount;
-        }
-
-		private void StartIncreaseDifficultyTimer()
-		{
-			shouldRunDifficultyTimer = true;
-			MonoInstance.Instance.StartCoroutine(DifficultyTimer());
-		}
-
-		private IEnumerator DifficultyTimer()
-        {
-			while (shouldRunDifficultyTimer)
-            {
-				var increaseAmount = increaseBalloonsCountPerSecond * Time.deltaTime;
-				var newBalloonsCount = runtimeRequiredBalloonsCount + increaseAmount;
-				runtimeRequiredBalloonsCount = Mathf.Clamp(newBalloonsCount, 1, maxBalloonsCount);
-
-				if (newBalloonsCount >= maxBalloonsCount)
-                {
-					shouldRunDifficultyTimer = false;
-                }
-
-				yield return null;
-			}
-        }
-
-		private void OnGameStarted(GameStartedEvent evt)
-        {
-			runtimeRequiredBalloonsCount = initialBalloonsCount;
-			StartIncreaseDifficultyTimer();
-		}
-
-		private void OnGameEnded(GameEndedEvent evt)
-		{
-			StopDifficultyTimer();
-		}
-
-		private void StopDifficultyTimer()
-        {
-			shouldRunDifficultyTimer = false;
+			MaxBalloonsCount = Mathf.Clamp(MaxBalloonsCount, 1, int.MaxValue);
+			InitialBalloonsCount = Mathf.Clamp(InitialBalloonsCount, 1, MaxBalloonsCount);
+			RuntimeRequiredBalloonsCount = Mathf.Clamp(InitialBalloonsCount, 0, MaxBalloonsCount);
 		}
 	}
 }

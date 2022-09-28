@@ -27,7 +27,7 @@ namespace BalloonsShooter.UI
                 return enabled
                     && leaderboardsService.IsSessionStarted
                     && !leaderboardsService.IsSubmitInProgress
-                    && !string.IsNullOrEmpty(playerNickname.nickname);
+                    && !string.IsNullOrEmpty(playerNickname.Nickname);
             }
         }
 
@@ -61,7 +61,7 @@ namespace BalloonsShooter.UI
 
         private void OnSubmitButtonPressed(ClickEvent evt)
         {
-            leaderboardsService.SubmitScore(playerNickname.nickname, gameScore.GetCurrentScore(), leaderboardId, (success) => 
+            leaderboardsService.SubmitScore(playerNickname.Nickname, gameScore.RuntimeScore, leaderboardId, (success) => 
             {
                 OnSubmit?.Invoke();
             });

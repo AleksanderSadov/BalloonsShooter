@@ -1,13 +1,12 @@
-using BalloonsShooter.Core;
-using BalloonsShooter.Effects.Events;
 using UnityEngine;
 
 namespace BalloonsShooter.Effects
 {
     public class Explosion : MonoBehaviour
     {
-        public GameObject parent;
         public float randomPitchStep;
+
+        public System.Action<Explosion> OnExplosionEnded; 
 
         private AudioSource explosionSound;
         private float originalPitch;
@@ -27,7 +26,7 @@ namespace BalloonsShooter.Effects
         public void ExplosionEnded()
         {
             explosionSound.Stop();
-            EventsManager.Broadcast(new ExplosionEndedEvent(parent));
+            OnExplosionEnded?.Invoke(this);
         }
     }
 }

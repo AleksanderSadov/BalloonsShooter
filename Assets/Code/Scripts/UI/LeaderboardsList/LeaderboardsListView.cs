@@ -43,7 +43,7 @@ namespace BalloonsShooter.UI
             submitLeaderboardsHint.style.display = DisplayStyle.None;
             leaderboardsLoadingHint.style.display = DisplayStyle.Flex;
             leaderboardsListView.style.display = DisplayStyle.None;
-            leaderboardsService.GetLeaderboardsList(currentPlayerNickname.nickname, leaderboardId, (list) =>
+            leaderboardsService.GetLeaderboardsList(currentPlayerNickname.Nickname, leaderboardId, (list) =>
             {
                 leaderboardsLoadingHint.style.display = DisplayStyle.None;
                 leaderboardsListView.style.display = DisplayStyle.Flex;
@@ -76,7 +76,7 @@ namespace BalloonsShooter.UI
         {
             // TODO Find list view ready callback. Now just wait and assume list view is ready
             yield return new WaitForSeconds(waitSeconds);
-            var playerIndex = leaderboardsListData.FindIndex(item => item.nickname.Equals(currentPlayerNickname.nickname));
+            var playerIndex = leaderboardsListData.FindIndex(item => item.nickname.Equals(currentPlayerNickname.Nickname));
             leaderboardsListView.ScrollToItem(playerIndex);
         }
     }

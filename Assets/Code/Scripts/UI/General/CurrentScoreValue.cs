@@ -25,7 +25,7 @@ namespace BalloonsShooter.UI
 
         private void Update()
         {
-            currentScoreValue.text = gameScore.GetCurrentScore().ToString();
+            currentScoreValue.text = gameScore.RuntimeScore.ToString();
         }
     }
 }

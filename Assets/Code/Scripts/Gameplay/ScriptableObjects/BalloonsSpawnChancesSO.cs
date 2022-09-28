@@ -35,7 +35,6 @@ namespace BalloonsShooter.Gameplay.ScriptableObjects
 				randomWeight -= balloon.weightedSpawnChance;
 			}
 
-			Debug.Log("Spawn chance miscalculation");
 			return null;
 		}
 	}

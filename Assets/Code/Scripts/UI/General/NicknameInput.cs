@@ -21,7 +21,7 @@ namespace BalloonsShooter.UI
         private void Start()
         {
             playerNicknameSO = ServiceLocator<PlayerNicknameSO>.GetService();
-            if (!string.IsNullOrEmpty(playerNicknameSO.nickname)) nicknameInput.value = playerNicknameSO.nickname;
+            if (!string.IsNullOrEmpty(playerNicknameSO.Nickname)) nicknameInput.value = playerNicknameSO.Nickname;
         }
 
         private void OnEnable()
@@ -36,7 +36,7 @@ namespace BalloonsShooter.UI
 
         private void OnInputValueChange(ChangeEvent<string> evt)
         {
-            playerNicknameSO.nickname = evt.newValue.Trim();
+            playerNicknameSO.Nickname = evt.newValue.Trim();
         }
     }
 }

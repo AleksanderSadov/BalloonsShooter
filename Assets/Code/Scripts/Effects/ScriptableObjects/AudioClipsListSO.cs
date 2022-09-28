@@ -9,11 +9,13 @@ namespace BalloonsShooter.Effects.ScriptableObjects
         [SerializeField]
 		private List<AudioClip> audioClips = new();
 
-		public AudioClip GetRandomClip()
+        public List<AudioClip> AudioClips { get => audioClips; private set => audioClips = value; }
+
+        public AudioClip GetRandomClip()
         {
-			if (audioClips.Count == 0) return null;
-			int randomClipIndex = Random.Range(0, audioClips.Count);
-			return audioClips[randomClipIndex];
+			if (AudioClips.Count == 0) return null;
+			int randomClipIndex = Random.Range(0, AudioClips.Count);
+			return AudioClips[randomClipIndex];
 		}
 	}
 }

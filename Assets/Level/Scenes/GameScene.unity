@@ -198,52 +198,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 944433163273993248}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1743296888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1743296890}
-  - component: {fileID: 1743296889}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1743296889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743296888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667ae374ad32914458dd39d19082e3ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  balloonExplosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1,
-    type: 3}
---- !u!4 &1743296890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743296888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4708903, y: -0.26200137, z: 1.9230883}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &213215707287693439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 213215707841992866, guid: 25d88ac153855ef41b5b904b4f90647f,
         type: 3}
       propertyPath: m_Name
-      value: ManagersContainer
+      value: Managers
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d88ac153855ef41b5b904b4f90647f, type: 3}

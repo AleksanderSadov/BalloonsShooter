@@ -7,4 +7,13 @@
     margin-right: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+.health-item-inactive {
+    opacity: 0;
 }

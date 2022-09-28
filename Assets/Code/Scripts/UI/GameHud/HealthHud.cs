@@ -1,25 +1,31 @@
+using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.ScriptableObjects;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace BalloonsShooter.UI
 {
-    public class HealthHud : MonoBehaviour
+    public class HealthHUD : MonoBehaviour
     {
         [SerializeField]
         private UIDocument document;
         [SerializeField]
         private VisualTreeAsset healthItemTemplate;
-        [SerializeField]
-        private PlayerHealthSO playerHealthSO;
 
         private VisualElement healthContainer;
+        private PlayerHealthSO playerHealthSO;
 
         private int lastDisplayedHealth = int.MinValue;
 
         private void Awake()
         {
             healthContainer = document.rootVisualElement.Q<VisualElement>(UIConstants.GAME_HUD_HEALTH_CONTAINER_NAME);
+        }
+
+        private void Start()
+        {
+            playerHealthSO = ServiceLocator<PlayerHealthSO>.GetService();
         }
 
         private void Update()
@@ -33,15 +39,16 @@ namespace BalloonsShooter.UI
             if (lastDisplayedHealth == currentHealth) return;
 
             int i = 0;
-            foreach (var healthItem in healthContainer.Children())
+            foreach (var healthItemTemplate in healthContainer.Children())
             {
+                var healthItem = healthItemTemplate.Children().First();
                 if (i <= currentHealth - 1)
                 {
-                    healthItem.style.display = DisplayStyle.Flex;
+                    healthItem.RemoveFromClassList(UIConstants.HEALTH_HUD_INACTIVE_CLASS);
                 }
                 else
                 {
-                    healthItem.style.display = DisplayStyle.None;
+                    healthItem.AddToClassList(UIConstants.HEALTH_HUD_INACTIVE_CLASS);
                 }
 
                 i++;

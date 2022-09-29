@@ -112,7 +112,8 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             if (!shouldSpawn) return;
 
-            int spawnCount = (int) Mathf.Floor(balloonsCount.RuntimeRequiredBalloonsCount) - balloonsObjectPool.CountActive;
+            var activeBalloonsCount = balloonsModel.EnabledEntitiesCached.Count;
+            int spawnCount = (int) Mathf.Floor(balloonsCount.RuntimeRequiredBalloonsCount) - activeBalloonsCount;
             for (int i = 0; i < spawnCount; i++)
             {
                 balloonsObjectPool.Get();

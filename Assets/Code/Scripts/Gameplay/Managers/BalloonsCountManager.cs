@@ -50,6 +50,7 @@ namespace BalloonsShooter.Gameplay.Manager
 		private void OnGameEnded(GameEndedEvent evt)
 		{
 			shouldRunDifficultyTimer = false;
+			balloonsCountSO.RuntimeRequiredBalloonsCount = balloonsCountSO.InitialBalloonsCount;
 		}
 	}
 }

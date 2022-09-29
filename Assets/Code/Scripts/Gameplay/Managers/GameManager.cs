@@ -1,5 +1,6 @@
 using BalloonsShooter.Core;
 using BalloonsShooter.Gameplay.Events;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ namespace BalloonsShooter.Gameplay.Manager
     {
         private void Start()
         {
-            EventsManager.Broadcast(new GameStartedEvent());
+            StartCoroutine(StartGame());
         }
 
         private void OnEnable()
@@ -31,6 +32,12 @@ namespace BalloonsShooter.Gameplay.Manager
         {
             EventsManager.Broadcast(new GameEndedEvent());
             SceneManager.LoadSceneAsync(GameConstants.GAME_OVER_ADDITIVE_SCENE_NAME, LoadSceneMode.Additive);
+        }
+
+        private IEnumerator StartGame()
+        {
+            yield return null;
+            EventsManager.Broadcast(new GameStartedEvent());
         }
     }
 }

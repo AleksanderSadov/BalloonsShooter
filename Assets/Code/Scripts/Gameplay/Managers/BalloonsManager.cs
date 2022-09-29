@@ -45,6 +45,8 @@ namespace BalloonsShooter.Gameplay.Manager
                 },
                 actionOnGet: (Balloon balloon) =>
                 {
+                    balloon.transform.localScale = balloonPrefab.transform.localScale;
+                    balloon.transform.rotation = balloonPrefab.transform.rotation;
                     balloon.transform.position = spawnPlaneHelper.GetRandomPositionOnPlane();
                     balloon.type = balloonsSpawnChances.GetRandomBalloonType();
                     balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;

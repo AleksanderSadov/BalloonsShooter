@@ -1,12 +1,12 @@
 .pageTitle {
     justify-content: flex-start;
-    font-size: 48px;
+    font-size: 40px;
     -unity-text-align: upper-center;
 }
 
 .pageSubtitle {
     -unity-text-align: upper-center;
-    font-size: 42px;
+    font-size: 34px;
     width: 100%;
 }
 

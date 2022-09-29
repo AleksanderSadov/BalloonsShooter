@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Art/UI/Elements/healthItem.uss?fileID=7433441132597879392&amp;guid=3ee837c9fd1714249bae9a595401bee6&amp;type=3#healthItem" />
-    <ui:VisualElement name="health-item" class="health-item" />
+    <ui:VisualElement name="health-item" picking-mode="Ignore" class="health-item" />
 </ui:UXML>

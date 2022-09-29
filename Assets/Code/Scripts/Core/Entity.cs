@@ -1,9 +1,10 @@
 using BalloonsShooter.Core.Events;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace BalloonsShooter.Core
 {
-    public abstract class Entity<T> : MonoBehaviour where T : MonoBehaviour 
+    public abstract class Entity<T> : MonoBehaviour, IPointerDownHandler where T : MonoBehaviour 
     {
         private T entityComponent;
 
@@ -28,9 +29,9 @@ namespace BalloonsShooter.Core
             EventsManager.Broadcast(new EntityDestroyedEvent<T>(entityComponent));
         }
 
-        private void OnMouseDown()
+        public void OnPointerDown(PointerEventData eventData)
         {
-            EventsManager.Broadcast(new EntityClickedEvent<T>(entityComponent));    
+            EventsManager.Broadcast(new EntityClickedEvent<T>(entityComponent));
         }
     }
 }

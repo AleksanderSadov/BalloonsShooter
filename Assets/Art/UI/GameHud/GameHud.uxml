@@ -1,17 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="healthItem" src="project://database/Assets/Art/UI/Elements/healthItem.uxml?fileID=9197481963319205126&amp;guid=47d7747f8810b2643ad922f24d2ba9c6&amp;type=3#healthItem" />
-    <ui:VisualElement name="hud-container" style="flex-direction: column-reverse; height: 100%;">
-        <ui:VisualElement name="health-container" style="flex-direction: row;">
-            <ui:Instance template="healthItem" name="healthItem" />
-            <ui:Instance template="healthItem" name="healthItem" />
-            <ui:Instance template="healthItem" name="healthItem" />
-            <ui:Instance template="healthItem" name="healthItem" />
-            <ui:Instance template="healthItem" name="healthItem" />
+    <ui:VisualElement name="hud-container" picking-mode="Ignore" style="flex-direction: column-reverse; height: 100%;">
+        <ui:VisualElement name="health-container" picking-mode="Ignore" style="flex-direction: row;">
+            <ui:Instance template="healthItem" name="healthItem" picking-mode="Ignore" />
+            <ui:Instance template="healthItem" name="healthItem" picking-mode="Ignore" />
+            <ui:Instance template="healthItem" name="healthItem" picking-mode="Ignore" />
+            <ui:Instance template="healthItem" name="healthItem" picking-mode="Ignore" />
+            <ui:Instance template="healthItem" name="healthItem" picking-mode="Ignore" />
         </ui:VisualElement>
-        <ui:VisualElement name="game-score-container" style="flex-direction: row;">
-            <ui:VisualElement style="flex-direction: row; background-color: rgba(255, 255, 255, 0.78); border-top-left-radius: 24px; border-bottom-left-radius: 24px; border-top-right-radius: 24px; border-bottom-right-radius: 24px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px;">
-                <ui:Label text="Score: " display-tooltip-when-elided="true" name="current-score-label" />
-                <ui:Label text="16000" display-tooltip-when-elided="true" name="current-score-value" />
+        <ui:VisualElement name="game-score-container" picking-mode="Ignore" style="flex-direction: row;">
+            <ui:VisualElement picking-mode="Ignore" style="flex-direction: row; background-color: rgba(255, 255, 255, 0.78); border-top-left-radius: 24px; border-bottom-left-radius: 24px; border-top-right-radius: 24px; border-bottom-right-radius: 24px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px;">
+                <ui:Label text="Score: " display-tooltip-when-elided="true" name="current-score-label" picking-mode="Ignore" />
+                <ui:Label text="16000" display-tooltip-when-elided="true" name="current-score-value" picking-mode="Ignore" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

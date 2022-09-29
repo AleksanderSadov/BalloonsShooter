@@ -12,7 +12,7 @@ namespace BalloonsShooter.Gameplay.Manager
 {
     public class BalloonsManager : MonoBehaviour
     {
-        public Transform balloonPlaneSpawner;
+        public Transform balloonsSpawningZone;
         public Balloon balloonPrefab;
 
         private BalloonsModel balloonsModel;
@@ -20,7 +20,11 @@ namespace BalloonsShooter.Gameplay.Manager
         private bool shouldSpawn = true;
         private BalloonsCountSO balloonsCount;
         private BalloonsSpawnChancesSO balloonsSpawnChances;
-        private PlaneHelper spawnPlaneHelper;
+
+        private Vector2 screenResolution;
+        private float balloonPrefabWidth;
+        private float leftSpawnBorder;
+        private float rightSpawnBorder;
 
         private void OnEnable()
         {
@@ -47,7 +51,7 @@ namespace BalloonsShooter.Gameplay.Manager
                 {
                     balloon.transform.localScale = balloonPrefab.transform.localScale;
                     balloon.transform.rotation = balloonPrefab.transform.rotation;
-                    balloon.transform.position = spawnPlaneHelper.GetRandomPositionOnPlane();
+                    balloon.transform.position = GetRandomSpawnPosition();
                     balloon.type = balloonsSpawnChances.GetRandomBalloonType();
                     balloon.GetComponent<MeshRenderer>().material = balloon.type.Material;
                     balloon.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -66,11 +70,12 @@ namespace BalloonsShooter.Gameplay.Manager
                 maxSize: maxBalloonsCount * 2
             );
 
-            spawnPlaneHelper = new(balloonPlaneSpawner);
+            balloonPrefabWidth = balloonPrefab.transform.localScale.x * balloonPrefab.GetComponent<MeshFilter>().sharedMesh.bounds.size.x;
         }
 
         private void Update()
         {
+            GetSpawnSizeBasedOnCameraSize();
             SpawnRequiredBalloons();
             MoveActiveBalloons();
         }
@@ -90,13 +95,15 @@ namespace BalloonsShooter.Gameplay.Manager
             {
                 balloon.transform.Translate(balloon.type.FloatSpeed * Time.deltaTime * Vector3.up, Space.World);
 
-                if (balloon.transform.position.x < spawnPlaneHelper.LeftBorderCached)
+
+
+                if (balloon.transform.position.x < leftSpawnBorder)
                 {
-                    RestrictBalloonMovement(balloon, spawnPlaneHelper.LeftBorderCached);
+                    RestrictBalloonMovement(balloon, leftSpawnBorder);
                 }
-                else if (balloon.transform.position.x > spawnPlaneHelper.RightBorderCached)
+                else if (balloon.transform.position.x > rightSpawnBorder)
                 {
-                    RestrictBalloonMovement(balloon, spawnPlaneHelper.RightBorderCached);
+                    RestrictBalloonMovement(balloon, rightSpawnBorder);
                 }
             }
         }
@@ -117,6 +124,27 @@ namespace BalloonsShooter.Gameplay.Manager
             for (int i = 0; i < spawnCount; i++)
             {
                 balloonsObjectPool.Get();
+            }
+        }
+
+        private Vector3 GetRandomSpawnPosition()
+        {
+            Vector3 randomPosition = new(Random.Range(leftSpawnBorder, rightSpawnBorder), balloonsSpawningZone.position.y, 0);
+            return randomPosition;
+        }
+
+        private void GetSpawnSizeBasedOnCameraSize()
+        {
+            if (screenResolution == null || screenResolution.x != Screen.width || screenResolution.y != Screen.height)
+            {
+                screenResolution = new Vector2(Screen.width, Screen.height);
+                Camera camera = Camera.main;
+                float height = 2f * camera.orthographicSize;
+                float width = height * camera.aspect;
+                float cameraHalfWidth = width / 2;
+
+                leftSpawnBorder = -cameraHalfWidth + balloonPrefabWidth;
+                rightSpawnBorder = cameraHalfWidth - balloonPrefabWidth;
             }
         }
 

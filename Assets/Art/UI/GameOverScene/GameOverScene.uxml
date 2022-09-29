@@ -12,9 +12,11 @@
             <ui:Label text="Leaderboards" display-tooltip-when-elided="true" class="pageSubtitle" />
         </ui:VisualElement>
         <ui:VisualElement style="margin-left: auto; margin-right: auto; max-width: 600px; width: 100%;">
-            <ui:Label text="Please submit your score to view leaderboards" display-tooltip-when-elided="true" name="leaderboards-submit-score-hint" class="submitLeaderboardsHint" style="width: 100%; display: none;" />
-            <ui:Label text="Loading..." display-tooltip-when-elided="true" name="leaderboards-loading-hint" class="submitLeaderboardsHint" style="display: none; width: 100%;" />
-            <ui:ListView focusable="false" name="leaderboards-list-view" fixed-item-height="45" selection-type="None" style="display: flex; margin-left: auto; margin-right: auto; max-height: 200px; height: 200px; width: 100%;" />
+            <ui:VisualElement style="width: 100%; height: 200px; max-height: 200px; min-height: 40px;">
+                <ui:Label text="Please submit your score to view leaderboards" display-tooltip-when-elided="true" name="leaderboards-submit-score-hint" class="submitLeaderboardsHint" style="width: 100%; display: flex; white-space: normal;" />
+                <ui:Label text="Loading..." display-tooltip-when-elided="true" name="leaderboards-loading-hint" class="submitLeaderboardsHint" style="display: none; width: 100%;" />
+                <ui:ListView focusable="false" name="leaderboards-list-view" fixed-item-height="45" selection-type="None" style="display: flex; margin-left: auto; margin-right: auto; max-height: 200px; height: 200px; width: 100%;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement style="flex-direction: row; justify-content: center;">
             <ui:VisualElement style="width: 75%; max-width: 400px;">
